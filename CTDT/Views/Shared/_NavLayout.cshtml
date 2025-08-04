@@ -1,0 +1,54 @@
+﻿@model List<CTDT.Models.NavBar>
+﻿@using CTDT.Helper
+
+@{
+    var user = SessionHelper.GetUser();
+}
+
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+        <a href="/trang-chu">
+            <img src="~/Style/assets/logo_interface/Logo_TDMU_2024_nguyen_ban.svg" style="width:130px" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
+            <span class="oi oi-menu"></span> Chức năng
+        </button>
+        @if (!SessionHelper.IsUserLoggedIn())
+        {
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="/" class="nav-link">Trang chủ</a></li>
+                    @foreach (var item in Model)
+                    {
+                        <li class="nav-item">
+                            <a href="@item.link_navbar" class="nav-link">@item.name_navbar</a>
+                        </li>
+                    }
+                    <li class="nav-item cta">
+                        <a href="javascript:void(0)" id="btnGoogleLogin" class="nav-link d-flex align-items-center">
+                            <i class="fab fa-google mr-2" style="color: #ea4335;"></i>
+                            <span>Đăng nhập với Google</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        }
+        else
+        {
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="/" class="nav-link">Trang chủ</a></li>
+                    @foreach (var item in Model)
+                    {
+                        <li class="nav-item">
+                            <a href="@item.link_navbar" class="nav-link">@item.name_navbar</a>
+                        </li>
+                    }
+                    <li class="nav-item"><a href="/bo-phieu-da-khao-sat" class="nav-link">Biểu mẫu đã khảo sát</a></li>
+                    <li class="nav-item d-none d-lg-block"><a href="#" class="nav-link">Xin chào: <b>@user.firstName @user.lastName</b></a></li>
+                    <li class="nav-item cta"><a href="javascript:void(0)" id="logout" class="nav-link"><span>Đăng xuất</span></a></li>
+                </ul>
+            </div>
+        }
+    </div>
+</nav>

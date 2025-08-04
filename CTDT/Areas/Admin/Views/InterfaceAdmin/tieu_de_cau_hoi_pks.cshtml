@@ -1,0 +1,167 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/Areas/assets/css/tieude.min.css" rel="stylesheet" />
+<div class="main-content">
+    <div class="card">
+        <div class="card-body">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Chi tiết câu hỏi phiếu khảo sát</a>
+                </li>
+            </ul>
+            <div class="tab-content m-t-15" id="myTabContent">
+
+                <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="page-header no-gutters">
+                        <h2 class="text-uppercase">TIÊU ĐỀ CHI TIẾT CÂU HỎI</h2>
+                        <hr />
+                        <fieldset class="border rounded-3 p-3">
+                            <legend class="float-none w-auto px-3">Chức năng</legend>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" style="font-size: 16px; font-weight: bold; color: #333;">Chọn hệ đào tạo</label>
+                                    <select class="form-control select2" id="hedaotao">
+                                        @foreach (var item in ViewBag.HeDaoTao)
+                                        {
+                                            <option value="@item.Value">@item.Text</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" style="font-size: 16px; font-weight: bold; color: #333;">Chọn năm học</label>
+                                    <select class="form-control select2" id="year">
+                                        @foreach (var item in ViewBag.Year)
+                                        {
+                                            <option value="@item.Value">@item.Text</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" style="font-size: 16px; font-weight: bold; color: #333;">Chọn phiếu khảo sát</label>
+                                    <select class="form-control select2" id="surveyid">
+                                        <option value="">Chọn hệ đào tạo và năm để thống kê</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <h2 id="check-public" style="text-align:right"></h2>
+                            <hr />
+                            <div class="d-flex flex-wrap justify-content-end mt-3">
+                                <button type="submit" id="btnFilter" class="btn btn-primary btn-tone me-2 mb-2">
+                                    <i class="fas fa-filter"></i> Lọc dữ liệu
+                                </button>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="m-t-25" id="showalldata">
+                        <div class="table-responsive" id="tieu-de-pks">
+                            <div class="alert alert-info" style="text-align: center; font-weight: bold;">
+                                Vui lòng chọn phiếu khảo sát để tiếp tục
+                            </div>
+                        </div>
+                    </div>
+                    <div id="loadingSpinner" style="display:none" class="loader"></div>
+                    <!--modal Thêm tiêu đề chính-->
+                    <div class="modal fade" id="exampleModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabelTitleSurvey"></h5>
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <i class="anticon anticon-close"></i>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="edttieudeTitle">Nhập tiêu đề phiếu</label>
+                                            <input type="text" class="form-control" id="edttieudeTitle" autocomplete="off" placeholder="Nhập tiêu đề tại đây">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sortOption">Chọn cách sắp xếp tiêu đề</label>
+                                            <select id="sortOption" class="form-control">
+                                                <option value="roman">Số La Mã (I, II, III...)</option>
+                                                <option value="alpha">Chữ cái (A, B, C...)</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group" id="customOrderField" style="display: none;">
+                                            <label for="customOrder">Nhập thứ tự thủ công</label>
+                                            <input type="text" class="form-control" id="customOrder" placeholder="Ví dụ: A, B, C">
+                                        </div>
+
+                                    </form>
+                                </div>
+                                <div class="modal-footer" id="showfootermodaltitlesurvey">
+                                    <!--footer modal-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!---->
+                    <!--modal Thêm chi tiết-->
+                    <div class="modal fade" id="chitietModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <i class="anticon anticon-close"></i>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="loadoptionchiltitle">
+                                        <!--modalbodychildrentitle-->
+                                    </form>
+                                </div>
+                                <div class="modal-footer" id="modalfooterchildrentitle">
+                                    <!--modalfooterchildrentitle-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!---->
+                    <!--modal Điều kiện khác-->
+                    <div class="modal fade bd-example-modal-lg" id="modalDieuKienKhac">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title h4">Điều kiện hiển thị (Điều hướng)</h5>
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <i class="anticon anticon-close"></i>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="data-table-answer-selected">
+                                        <!---->
+                                    </div>
+                                    <hr />
+                                    <div id="data-table-answer">
+                                        <!---->
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" id="btnSaveDKK" class="btn btn-primary">Lưu dữ liệu</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!---->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Banner -->
+    <div id="smallBanner" class="small-banner fixed-footer">
+        <button type="button" id="btnAddTitle" class="btn btn-primary m-r-5">Tạo mới tiêu đề cha</button>
+        <button type="button" id="btnAddChilTitle" class="btn btn-warning m-r-5">Tạo mới tiêu đề con</button>
+        <button type="button" id="btnSortTitle" class="btn btn-secondary m-r-5">Sắp xếp lại thứ tự câu hỏi</button>
+        <button type="button" id="btnXemTruocPhieuDaTao" class="btn btn-info m-r-5">Xem trước Form phiếu khảo sát</button>
+        <button type="button" id="btnXuatBanPhieu" class="btn btn-success m-r-5">Xuất bản phiếu</button>
+    </div>
+</div>
+@section scriptsAdmin{
+    <script src="~/Areas/Admin/Scripts/ChucNangNguoiDung/TieuDeCauHoi.js"></script>
+}

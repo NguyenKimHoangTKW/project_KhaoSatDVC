@@ -1,0 +1,89 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="main-content">
+    <div class="card">
+        <div class="card-body">
+            <div class="page-header no-gutters">
+                <h2 class="text-uppercase">danh sách Navbar</h2>
+                <hr />
+                <fieldset class="border rounded-3 p-3">
+                    <legend class="float-none w-auto px-3">Chức năng</legend>
+                    <hr />
+                    <div class="row mb-3 align-items-center">
+                        <!-- Nhóm các nút bên phải -->
+                        <div class="col-12 col-md-6 d-flex flex-wrap justify-content-md-end justify-content-center gap-3">
+                            <button class="btn btn-primary w-100 w-md-auto px-4 py-2" id="btnAdd">
+                                <i class="fas fa-plus me-1"></i> Thêm mới Navbar
+                            </button>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <!-- Modal update -->
+            <div class="modal fade" id="Modal-update">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title h4" id="modal-title-update"><!----></h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <i class="anticon anticon-close"></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="form-validation">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label control-label">Thứ tự hiển thị</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="thu-tu-val" placeholder="Bắt buộc *">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label control-label">Tên Navbar</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="ten-navbar-val" placeholder="Bắt buộc *">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label control-label">Link điều hướng Navbar</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="link-dieu-huong-val" placeholder="Bắt buộc *">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label control-label">Trạng thái</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control select2" id="trang-thai-val">
+                                            <option value="1">Mở</option>
+                                            <option value="0">Đóng</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </form>
+                            <div class="modal-footer" id="modal-footer-update">
+                                <!---->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Modal Thêm mới Khoa-->
+            <div id="loadingSpinner" style="display:none" class="loader"></div>
+            <div class="m-t-25">
+                <div class="table-responsive">
+                    <table id="data-table" class="table table-bordered">
+                        <!---->
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scriptsAdmin{
+    <script src="~/Areas/Admin/Scripts/ChucNangNguoiDung/Navbar.js"></script>
+
+}
+
+

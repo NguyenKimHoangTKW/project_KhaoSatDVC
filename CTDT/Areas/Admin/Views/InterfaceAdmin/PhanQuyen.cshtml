@@ -1,0 +1,151 @@
+﻿@model CTDT.Models.users
+
+@{
+    ViewBag.Title = "Phân quyền tài khoản - TDMU";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .vr {
+        border-left: 1px solid #333;
+        height: auto;
+        margin: 0 20px;
+    }
+
+    .accordion--custom .accordion-header {
+        align-items: center;
+        gap: 1rem;
+        padding: 0.75rem 1rem;
+        transition: background-color 0.3s ease;
+        margin-top: 15px;
+        background-color: rgb(182 182 182 / 25%);
+        border-radius: 100px;
+    }
+
+        .accordion--custom .accordion-header:hover {
+            color: #e9ecef;
+        }
+
+        .accordion--custom .accordion-header .accordion-button {
+            padding-left: 0;
+            background: none;
+            flex-grow: 1;
+            border: none;
+            outline: none;
+            font-weight: bold;
+            color: #333;
+        }
+    #cbvcTable {
+        width: 100% !important;
+    }
+
+    .dataTables_wrapper {
+        width: 100% !important;
+    }
+    .accordion--custom .accordion-button:not(.collapsed) {
+        box-shadow: none;
+        color: #007bff;
+    }
+
+    .accordion--custom .accordion-collapse {
+        padding-left: 1.75rem;
+    }
+
+    .form-check-label {
+        margin-left: 0.5rem;
+    }
+
+    fieldset {
+        border: 1px solid #ddd !important;
+        padding: 10px;
+        border-radius: 4px;
+    }
+
+    legend {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+</style>
+
+<div class="main-content">
+    <div class="card">
+        <div class="card-body">
+            <div class="container py-4">
+                <div class="page-header mb-4">
+                    <h2 class="text-uppercase fw-bold text-primary">Thống kê tỷ lệ tham gia khảo sát</h2>
+                    <hr />
+                </div>
+
+                <fieldset class="border rounded-4 p-4 shadow-sm bg-white">
+                    <legend class="float-none w-auto px-4 fw-semibold fs-5">🔧 Chức năng</legend>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <p id="ma_user" style="display:none">@Model.id_users</p>
+                            <div class="mb-2">
+                                <label class="form-label fw-bold text-dark">Thông tin người dùng</label>
+                            </div>
+                            <div class="ps-3">
+                                <p class="mb-1"><strong>👤 Họ tên:</strong> @Model.firstName @Model.lastName</p>
+                                <p><strong>📧 Email:</strong> @Model.email</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label for="quyen-user" class="form-label fw-bold text-dark">Chọn quyền người dùng</label>
+                            <select class="form-control select2" id="quyen-user">
+                                <!---->
+                            </select>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="d-flex flex-wrap gap-2 justify-content-start justify-content-md-end">
+                        <button class="btn btn-outline-primary" id="gobackhome">
+                            <i class="fas fa-arrow-left me-1"></i> Quay lại
+                        </button>
+                        <button class="btn btn-success" onclick="handleSave()">
+                            <i class="fas fa-user-shield me-1"></i> Cấp quyền
+                        </button>
+                    </div>
+                </fieldset>
+            </div>
+            <div id="loadingSpinner" style="display:none" class="loader"></div>
+            <div class="mt-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <div id="quyen_chuc_nang_selected">
+                            <h2>Danh sách chức năng quyền users</h2>
+                            <!-- Checkbox filter -->
+                            <div class="form-check mb-3">
+                                <input type="checkbox" class="form-check-input file_checkbox" id="filterCheckbox">
+                                <label class="form-check-label fw-semibold" for="filterCheckbox">
+                                    Bộ lọc dữ liệu
+                                </label>
+                            </div>
+                        </div>
+                        <hr />
+                        <h2 id="titleTable"><!----></h2>
+                        <!-- Responsive Table -->
+                        <div class="table-responsive">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <table id="cbvcTable" class="table table-bordered">
+                                    <!---->
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+@section scriptsAdmin{
+    <script src="~/Areas/Admin/Scripts/PhanQuyen/PhanQuyenNguoiDung.js"></script>
+}

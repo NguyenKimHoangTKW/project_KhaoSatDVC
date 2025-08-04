@@ -1,0 +1,2595 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dbSurveyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="answer_response">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="surveyID" Type="int" Nullable="false" />
+          <Property Name="id_users" Type="int" />
+          <Property Name="id_nguoi_hoc_khao_sat" Type="int" />
+          <Property Name="email" Type="nvarchar(max)" />
+          <Property Name="json_answer" Type="nvarchar(max)" />
+          <Property Name="time" Type="int" />
+          <Property Name="id_namhoc" Type="int" />
+        </EntityType>
+        <EntityType Name="Banner">
+          <Key>
+            <PropertyRef Name="id_banner" />
+          </Key>
+          <Property Name="id_banner" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="img_banner" Type="nvarchar(max)" />
+          <Property Name="is_open" Type="int" />
+        </EntityType>
+        <EntityType Name="bo_mon">
+          <Key>
+            <PropertyRef Name="id_bo_mon" />
+          </Key>
+          <Property Name="id_bo_mon" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ten_bo_mon" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_khoa_children" Type="int" />
+          <Property Name="id_khoa_vien_truong" Type="int" />
+          <Property Name="id_nam_hoc" Type="int" />
+          <Property Name="ngay_tao" Type="int" />
+          <Property Name="ngay_cap_nhat" Type="int" />
+        </EntityType>
+        <EntityType Name="chi_tiet_cau_hoi_tieu_de">
+          <Key>
+            <PropertyRef Name="id_chi_tiet_cau_hoi_tieu_de" />
+          </Key>
+          <Property Name="id_chi_tiet_cau_hoi_tieu_de" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="thu_tu" Type="int" />
+          <Property Name="id_tieu_de_phieu" Type="int" />
+          <Property Name="ten_cau_hoi" Type="nvarchar(max)" />
+          <Property Name="id_dang_cau_hoi" Type="int" />
+          <Property Name="bat_buoc" Type="int" />
+          <Property Name="is_ykienkhac" Type="int" />
+          <Property Name="dieu_kien_hien_thi" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="chuc_nang_users">
+          <Key>
+            <PropertyRef Name="id_chuc_nang" />
+          </Key>
+          <Property Name="id_chuc_nang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ten_chuc_nang" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ma_chuc_nang" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="id_typeusers" Type="int" />
+          <Property Name="ghi_chu" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="ctdt">
+          <Key>
+            <PropertyRef Name="id_ctdt" />
+          </Key>
+          <Property Name="id_ctdt" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_ctdt" Type="nvarchar" MaxLength="10" />
+          <Property Name="ten_ctdt" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="id_bo_mon" Type="int" />
+          <Property Name="id_khoa_children" Type="int" />
+          <Property Name="id_khoa_vien_truong" Type="int" />
+          <Property Name="id_hdt" Type="int" />
+          <Property Name="ngaycapnhat" Type="int" Nullable="false" />
+          <Property Name="ngaytao" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="dang_cau_hoi">
+          <Key>
+            <PropertyRef Name="id_dang_cau_hoi" />
+          </Key>
+          <Property Name="id_dang_cau_hoi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ten_dang_cau_hoi" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="dieu_kien_cau_hoi">
+          <Key>
+            <PropertyRef Name="id_cau_hoi_dieu_kien_khac" />
+          </Key>
+          <Property Name="id_cau_hoi_dieu_kien_khac" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_chi_tiet_tieu_de_cau_hoi" Type="int" />
+          <Property Name="id_rd_chk" Type="int" />
+          <Property Name="json_question" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="dot_khao_sat">
+          <Key>
+            <PropertyRef Name="id_dot_khao_sat" />
+          </Key>
+          <Property Name="id_dot_khao_sat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ten_dot_khao_sat" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="group_loaikhaosat">
+          <Key>
+            <PropertyRef Name="id_gr_loaikhaosat" />
+          </Key>
+          <Property Name="id_gr_loaikhaosat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_gr_loaikhaosat" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="hedaotao">
+          <Key>
+            <PropertyRef Name="id_hedaotao" />
+          </Key>
+          <Property Name="id_hedaotao" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ten_hedaotao" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="describe" Type="nvarchar(max)" />
+          <Property Name="image" Type="nvarchar(max)" />
+          <Property Name="is_open" Type="int" />
+          <Property Name="is_statistical" Type="int" />
+        </EntityType>
+        <EntityType Name="khoa_children">
+          <Key>
+            <PropertyRef Name="id_khoa_children" />
+          </Key>
+          <Property Name="id_khoa_children" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ten_khoa_children" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_khoa_vien_truong" Type="int" />
+          <Property Name="id_nam_hoc" Type="int" />
+          <Property Name="ngay_tao" Type="int" />
+          <Property Name="ngay_cap_nhat" Type="int" />
+        </EntityType>
+        <EntityType Name="khoa_vien_truong">
+          <Key>
+            <PropertyRef Name="id_khoa" />
+          </Key>
+          <Property Name="id_khoa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_khoa" Type="nvarchar" MaxLength="10" />
+          <Property Name="ten_khoa" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="id_namhoc" Type="int" />
+          <Property Name="is_chuyen_mon" Type="int" />
+          <Property Name="ngaycapnhat" Type="int" Nullable="false" />
+          <Property Name="ngaytao" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LoaiKhaoSat">
+          <Key>
+            <PropertyRef Name="id_loaikhaosat" />
+          </Key>
+          <Property Name="id_loaikhaosat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_loaikhaosat" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="id_gr_loaikhaosat" Type="int" />
+          <Property Name="TimeMake" Type="int" />
+          <Property Name="TimeUpdate" Type="int" />
+        </EntityType>
+        <EntityType Name="log_time_extension_survey">
+          <Key>
+            <PropertyRef Name="id_log_time_extension" />
+          </Key>
+          <Property Name="id_log_time_extension" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="time_log_start" Type="int" />
+          <Property Name="time_log_end" Type="int" />
+          <Property Name="surveyid" Type="int" />
+        </EntityType>
+        <EntityType Name="lop">
+          <Key>
+            <PropertyRef Name="id_lop" />
+          </Key>
+          <Property Name="id_lop" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_ctdt" Type="int" Nullable="false" />
+          <Property Name="ma_lop" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ngaycapnhat" Type="int" Nullable="false" />
+          <Property Name="ngaytao" Type="int" Nullable="false" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <EntityType Name="MailAttachments">
+          <Key>
+            <PropertyRef Name="id_mail_attachments" />
+          </Key>
+          <Property Name="id_mail_attachments" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="500" />
+          <Property Name="FilePath" Type="nvarchar" MaxLength="500" />
+          <Property Name="FileSize" Type="bigint" />
+          <Property Name="id_mail_logs" Type="int" />
+        </EntityType>
+        <EntityType Name="MailLogs">
+          <Key>
+            <PropertyRef Name="id_mail_logs" />
+          </Key>
+          <Property Name="id_mail_logs" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_user" Type="int" />
+          <Property Name="Subject" Type="nvarchar(max)" />
+          <Property Name="Body" Type="nvarchar(max)" />
+          <Property Name="Create_Date" Type="int" />
+        </EntityType>
+        <EntityType Name="MailRecipients">
+          <Key>
+            <PropertyRef Name="id_mail_recipients" />
+          </Key>
+          <Property Name="id_mail_recipients" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MailSend" Type="nvarchar(max)" />
+          <Property Name="id_mail_log" Type="int" />
+        </EntityType>
+        <EntityType Name="NamHoc">
+          <Key>
+            <PropertyRef Name="id_namhoc" />
+          </Key>
+          <Property Name="id_namhoc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ten_namhoc" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <EntityType Name="NavBar">
+          <Key>
+            <PropertyRef Name="id_navbar" />
+          </Key>
+          <Property Name="id_navbar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="thu_tu_hien_thi" Type="int" />
+          <Property Name="name_navbar" Type="nvarchar(max)" />
+          <Property Name="link_navbar" Type="nvarchar(max)" />
+          <Property Name="is_open" Type="int" />
+        </EntityType>
+        <EntityType Name="nguoi_hoc_khao_sat">
+          <Key>
+            <PropertyRef Name="id_nguoi_hoc_khao_sat" />
+          </Key>
+          <Property Name="id_nguoi_hoc_khao_sat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="surveyID" Type="int" Nullable="false" />
+          <Property Name="id_sv" Type="int" Nullable="false" />
+          <Property Name="is_khao_sat" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="phan_quyen_chuc_nang_users">
+          <Key>
+            <PropertyRef Name="id_phan_quyen" />
+          </Key>
+          <Property Name="id_phan_quyen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_users" Type="int" Nullable="false" />
+          <Property Name="id_chuc_nang" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="phan_quyen_users">
+          <Key>
+            <PropertyRef Name="id_phan_quyen_user" />
+          </Key>
+          <Property Name="id_phan_quyen_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_users" Type="int" />
+          <Property Name="id_ctdt" Type="int" />
+          <Property Name="id_don_vi" Type="int" />
+          <Property Name="id_khoa" Type="int" />
+          <Property Name="id_bo_mon" Type="int" />
+        </EntityType>
+        <EntityType Name="radio_cau_hoi_khac">
+          <Key>
+            <PropertyRef Name="id_rd_cau_hoi_khac" />
+          </Key>
+          <Property Name="id_rd_cau_hoi_khac" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="thu_tu" Type="int" />
+          <Property Name="ten_rd_cau_hoi_khac" Type="nvarchar(max)" />
+          <Property Name="id_chi_tiet_cau_hoi_tieu_de" Type="int" />
+        </EntityType>
+        <EntityType Name="sinhvien">
+          <Key>
+            <PropertyRef Name="id_sv" />
+          </Key>
+          <Property Name="id_sv" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_lop" Type="int" Nullable="false" />
+          <Property Name="ma_sv" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="hovaten" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ngaysinh" Type="date" />
+          <Property Name="sodienthoai" Type="nvarchar" MaxLength="100" />
+          <Property Name="diachi" Type="nvarchar" MaxLength="200" />
+          <Property Name="phai" Type="nvarchar" MaxLength="50" />
+          <Property Name="ngaycapnhat" Type="int" />
+          <Property Name="ngaytao" Type="int" />
+          <Property Name="description" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="survey">
+          <Key>
+            <PropertyRef Name="surveyID" />
+          </Key>
+          <Property Name="surveyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_hedaotao" Type="int" />
+          <Property Name="surveyData" Type="nvarchar(max)" />
+          <Property Name="surveyTitle" Type="nvarchar(max)" />
+          <Property Name="surveyDescription" Type="nvarchar(max)" />
+          <Property Name="surveyTimeStart" Type="int" />
+          <Property Name="surveyTimeEnd" Type="int" />
+          <Property Name="surveyTimeMake" Type="int" />
+          <Property Name="surveyTimeUpdate" Type="int" />
+          <Property Name="surveyStatus" Type="int" />
+          <Property Name="id_loaikhaosat" Type="int" Nullable="false" />
+          <Property Name="creator" Type="int" />
+          <Property Name="id_namhoc" Type="int" />
+          <Property Name="id_dot_khao_sat" Type="int" />
+          <Property Name="mo_thong_ke" Type="int" />
+          <Property Name="ty_le_phan_tram_dat" Type="nvarchar" MaxLength="50" />
+          <Property Name="img" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tieu_de_phieu_khao_sat">
+          <Key>
+            <PropertyRef Name="id_tieu_de_phieu" />
+          </Key>
+          <Property Name="id_tieu_de_phieu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="thu_tu" Type="nvarchar" MaxLength="5" />
+          <Property Name="thu_tu_sap_xep" Type="int" />
+          <Property Name="surveyID" Type="int" />
+          <Property Name="ten_tieu_de" Type="nvarchar(max)" />
+          <Property Name="desception" Type="nvarchar(max)" />
+          <Property Name="dieu_kien_hien_thi" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="typeusers">
+          <Key>
+            <PropertyRef Name="id_typeusers" />
+          </Key>
+          <Property Name="id_typeusers" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_typeusers" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id_users" />
+          </Key>
+          <Property Name="id_users" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstName" Type="nvarchar(max)" />
+          <Property Name="lastName" Type="nvarchar(max)" />
+          <Property Name="email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="id_typeusers" Type="int" />
+          <Property Name="ngaycapnhat" Type="int" />
+          <Property Name="ngaytao" Type="int" />
+          <Property Name="dang_nhap_lan_cuoi" Type="int" />
+          <Property Name="avatarUrl" Type="nvarchar(max)" />
+          <Property Name="status" Type="tinyint" />
+        </EntityType>
+        <Association Name="FK_answer_response_NamHoc">
+          <End Role="NamHoc" Type="Self.NamHoc" Multiplicity="0..1" />
+          <End Role="answer_response" Type="Self.answer_response" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NamHoc">
+              <PropertyRef Name="id_namhoc" />
+            </Principal>
+            <Dependent Role="answer_response">
+              <PropertyRef Name="id_namhoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_answer_response_nguoi_hoc_khao_sat">
+          <End Role="nguoi_hoc_khao_sat" Type="Self.nguoi_hoc_khao_sat" Multiplicity="0..1" />
+          <End Role="answer_response" Type="Self.answer_response" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nguoi_hoc_khao_sat">
+              <PropertyRef Name="id_nguoi_hoc_khao_sat" />
+            </Principal>
+            <Dependent Role="answer_response">
+              <PropertyRef Name="id_nguoi_hoc_khao_sat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_answer_response_survey">
+          <End Role="survey" Type="Self.survey" Multiplicity="1" />
+          <End Role="answer_response" Type="Self.answer_response" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="survey">
+              <PropertyRef Name="surveyID" />
+            </Principal>
+            <Dependent Role="answer_response">
+              <PropertyRef Name="surveyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_answer_response_users">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="answer_response" Type="Self.answer_response" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id_users" />
+            </Principal>
+            <Dependent Role="answer_response">
+              <PropertyRef Name="id_users" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bo_mon_khoa_children">
+          <End Role="khoa_children" Type="Self.khoa_children" Multiplicity="0..1" />
+          <End Role="bo_mon" Type="Self.bo_mon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khoa_children">
+              <PropertyRef Name="id_khoa_children" />
+            </Principal>
+            <Dependent Role="bo_mon">
+              <PropertyRef Name="id_khoa_children" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bo_mon_khoa_vien_truong">
+          <End Role="khoa_vien_truong" Type="Self.khoa_vien_truong" Multiplicity="0..1" />
+          <End Role="bo_mon" Type="Self.bo_mon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khoa_vien_truong">
+              <PropertyRef Name="id_khoa" />
+            </Principal>
+            <Dependent Role="bo_mon">
+              <PropertyRef Name="id_khoa_vien_truong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bo_mon_NamHoc">
+          <End Role="NamHoc" Type="Self.NamHoc" Multiplicity="0..1" />
+          <End Role="bo_mon" Type="Self.bo_mon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NamHoc">
+              <PropertyRef Name="id_namhoc" />
+            </Principal>
+            <Dependent Role="bo_mon">
+              <PropertyRef Name="id_nam_hoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_chi_tiet_cau_hoi_tieu_de_dang_cau_hoi">
+          <End Role="dang_cau_hoi" Type="Self.dang_cau_hoi" Multiplicity="0..1" />
+          <End Role="chi_tiet_cau_hoi_tieu_de" Type="Self.chi_tiet_cau_hoi_tieu_de" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dang_cau_hoi">
+              <PropertyRef Name="id_dang_cau_hoi" />
+            </Principal>
+            <Dependent Role="chi_tiet_cau_hoi_tieu_de">
+              <PropertyRef Name="id_dang_cau_hoi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_chi_tiet_cau_hoi_tieu_de_tieu_de_phieu_khao_sat">
+          <End Role="tieu_de_phieu_khao_sat" Type="Self.tieu_de_phieu_khao_sat" Multiplicity="0..1" />
+          <End Role="chi_tiet_cau_hoi_tieu_de" Type="Self.chi_tiet_cau_hoi_tieu_de" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tieu_de_phieu_khao_sat">
+              <PropertyRef Name="id_tieu_de_phieu" />
+            </Principal>
+            <Dependent Role="chi_tiet_cau_hoi_tieu_de">
+              <PropertyRef Name="id_tieu_de_phieu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_chuc_nang_users_typeusers">
+          <End Role="typeusers" Type="Self.typeusers" Multiplicity="0..1" />
+          <End Role="chuc_nang_users" Type="Self.chuc_nang_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="typeusers">
+              <PropertyRef Name="id_typeusers" />
+            </Principal>
+            <Dependent Role="chuc_nang_users">
+              <PropertyRef Name="id_typeusers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctdt_bo_mon">
+          <End Role="bo_mon" Type="Self.bo_mon" Multiplicity="0..1" />
+          <End Role="ctdt" Type="Self.ctdt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bo_mon">
+              <PropertyRef Name="id_bo_mon" />
+            </Principal>
+            <Dependent Role="ctdt">
+              <PropertyRef Name="id_bo_mon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctdt_hedaotao">
+          <End Role="hedaotao" Type="Self.hedaotao" Multiplicity="0..1" />
+          <End Role="ctdt" Type="Self.ctdt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hedaotao">
+              <PropertyRef Name="id_hedaotao" />
+            </Principal>
+            <Dependent Role="ctdt">
+              <PropertyRef Name="id_hdt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctdt_khoa_children">
+          <End Role="khoa_children" Type="Self.khoa_children" Multiplicity="0..1" />
+          <End Role="ctdt" Type="Self.ctdt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khoa_children">
+              <PropertyRef Name="id_khoa_children" />
+            </Principal>
+            <Dependent Role="ctdt">
+              <PropertyRef Name="id_khoa_children" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctdt_khoa_vien_truong">
+          <End Role="khoa_vien_truong" Type="Self.khoa_vien_truong" Multiplicity="0..1" />
+          <End Role="ctdt" Type="Self.ctdt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khoa_vien_truong">
+              <PropertyRef Name="id_khoa" />
+            </Principal>
+            <Dependent Role="ctdt">
+              <PropertyRef Name="id_khoa_vien_truong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dieu_kien_cau_hoi_chi_tiet_cau_hoi_tieu_de">
+          <End Role="chi_tiet_cau_hoi_tieu_de" Type="Self.chi_tiet_cau_hoi_tieu_de" Multiplicity="0..1" />
+          <End Role="dieu_kien_cau_hoi" Type="Self.dieu_kien_cau_hoi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chi_tiet_cau_hoi_tieu_de">
+              <PropertyRef Name="id_chi_tiet_cau_hoi_tieu_de" />
+            </Principal>
+            <Dependent Role="dieu_kien_cau_hoi">
+              <PropertyRef Name="id_chi_tiet_tieu_de_cau_hoi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dieu_kien_cau_hoi_radio_cau_hoi_khac">
+          <End Role="radio_cau_hoi_khac" Type="Self.radio_cau_hoi_khac" Multiplicity="0..1" />
+          <End Role="dieu_kien_cau_hoi" Type="Self.dieu_kien_cau_hoi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="radio_cau_hoi_khac">
+              <PropertyRef Name="id_rd_cau_hoi_khac" />
+            </Principal>
+            <Dependent Role="dieu_kien_cau_hoi">
+              <PropertyRef Name="id_rd_chk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_khoa_children_khoa_vien_truong">
+          <End Role="khoa_vien_truong" Type="Self.khoa_vien_truong" Multiplicity="0..1" />
+          <End Role="khoa_children" Type="Self.khoa_children" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khoa_vien_truong">
+              <PropertyRef Name="id_khoa" />
+            </Principal>
+            <Dependent Role="khoa_children">
+              <PropertyRef Name="id_khoa_vien_truong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_khoa_children_NamHoc">
+          <End Role="NamHoc" Type="Self.NamHoc" Multiplicity="0..1" />
+          <End Role="khoa_children" Type="Self.khoa_children" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NamHoc">
+              <PropertyRef Name="id_namhoc" />
+            </Principal>
+            <Dependent Role="khoa_children">
+              <PropertyRef Name="id_nam_hoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_khoa_NamHoc">
+          <End Role="NamHoc" Type="Self.NamHoc" Multiplicity="0..1" />
+          <End Role="khoa_vien_truong" Type="Self.khoa_vien_truong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NamHoc">
+              <PropertyRef Name="id_namhoc" />
+            </Principal>
+            <Dependent Role="khoa_vien_truong">
+              <PropertyRef Name="id_namhoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LoaiKhaoSat_group_loaikhaosat">
+          <End Role="group_loaikhaosat" Type="Self.group_loaikhaosat" Multiplicity="0..1" />
+          <End Role="LoaiKhaoSat" Type="Self.LoaiKhaoSat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="group_loaikhaosat">
+              <PropertyRef Name="id_gr_loaikhaosat" />
+            </Principal>
+            <Dependent Role="LoaiKhaoSat">
+              <PropertyRef Name="id_gr_loaikhaosat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_log_time_extension_survey_survey">
+          <End Role="survey" Type="Self.survey" Multiplicity="0..1" />
+          <End Role="log_time_extension_survey" Type="Self.log_time_extension_survey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="survey">
+              <PropertyRef Name="surveyID" />
+            </Principal>
+            <Dependent Role="log_time_extension_survey">
+              <PropertyRef Name="surveyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_lop_ctdt">
+          <End Role="ctdt" Type="Self.ctdt" Multiplicity="1" />
+          <End Role="lop" Type="Self.lop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ctdt">
+              <PropertyRef Name="id_ctdt" />
+            </Principal>
+            <Dependent Role="lop">
+              <PropertyRef Name="id_ctdt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MailAttachments_MailLogs">
+          <End Role="MailLogs" Type="Self.MailLogs" Multiplicity="0..1" />
+          <End Role="MailAttachments" Type="Self.MailAttachments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MailLogs">
+              <PropertyRef Name="id_mail_logs" />
+            </Principal>
+            <Dependent Role="MailAttachments">
+              <PropertyRef Name="id_mail_logs" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MailLogs_users">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="MailLogs" Type="Self.MailLogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id_users" />
+            </Principal>
+            <Dependent Role="MailLogs">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MailRecipients_MailLogs">
+          <End Role="MailLogs" Type="Self.MailLogs" Multiplicity="0..1" />
+          <End Role="MailRecipients" Type="Self.MailRecipients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MailLogs">
+              <PropertyRef Name="id_mail_logs" />
+            </Principal>
+            <Dependent Role="MailRecipients">
+              <PropertyRef Name="id_mail_log" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_nguoi_hoc_khao_sat_sinhvien">
+          <End Role="sinhvien" Type="Self.sinhvien" Multiplicity="1" />
+          <End Role="nguoi_hoc_khao_sat" Type="Self.nguoi_hoc_khao_sat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sinhvien">
+              <PropertyRef Name="id_sv" />
+            </Principal>
+            <Dependent Role="nguoi_hoc_khao_sat">
+              <PropertyRef Name="id_sv" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_nguoi_hoc_khao_sat_survey">
+          <End Role="survey" Type="Self.survey" Multiplicity="1" />
+          <End Role="nguoi_hoc_khao_sat" Type="Self.nguoi_hoc_khao_sat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="survey">
+              <PropertyRef Name="surveyID" />
+            </Principal>
+            <Dependent Role="nguoi_hoc_khao_sat">
+              <PropertyRef Name="surveyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_phan_quyen_chuc_nang_users_chuc_nang_users">
+          <End Role="chuc_nang_users" Type="Self.chuc_nang_users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="phan_quyen_chuc_nang_users" Type="Self.phan_quyen_chuc_nang_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chuc_nang_users">
+              <PropertyRef Name="id_chuc_nang" />
+            </Principal>
+            <Dependent Role="phan_quyen_chuc_nang_users">
+              <PropertyRef Name="id_chuc_nang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_phan_quyen_chuc_nang_users_users">
+          <End Role="users" Type="Self.users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="phan_quyen_chuc_nang_users" Type="Self.phan_quyen_chuc_nang_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id_users" />
+            </Principal>
+            <Dependent Role="phan_quyen_chuc_nang_users">
+              <PropertyRef Name="id_users" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_phan_quyen_users_bo_mon">
+          <End Role="bo_mon" Type="Self.bo_mon" Multiplicity="0..1" />
+          <End Role="phan_quyen_users" Type="Self.phan_quyen_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bo_mon">
+              <PropertyRef Name="id_bo_mon" />
+            </Principal>
+            <Dependent Role="phan_quyen_users">
+              <PropertyRef Name="id_bo_mon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_phan_quyen_users_ctdt">
+          <End Role="ctdt" Type="Self.ctdt" Multiplicity="0..1" />
+          <End Role="phan_quyen_users" Type="Self.phan_quyen_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ctdt">
+              <PropertyRef Name="id_ctdt" />
+            </Principal>
+            <Dependent Role="phan_quyen_users">
+              <PropertyRef Name="id_ctdt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_phan_quyen_users_khoa">
+          <End Role="khoa_vien_truong" Type="Self.khoa_vien_truong" Multiplicity="0..1" />
+          <End Role="phan_quyen_users" Type="Self.phan_quyen_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khoa_vien_truong">
+              <PropertyRef Name="id_khoa" />
+            </Principal>
+            <Dependent Role="phan_quyen_users">
+              <PropertyRef Name="id_don_vi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_phan_quyen_users_khoa_children">
+          <End Role="khoa_children" Type="Self.khoa_children" Multiplicity="0..1" />
+          <End Role="phan_quyen_users" Type="Self.phan_quyen_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khoa_children">
+              <PropertyRef Name="id_khoa_children" />
+            </Principal>
+            <Dependent Role="phan_quyen_users">
+              <PropertyRef Name="id_khoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_phan_quyen_users_users">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="phan_quyen_users" Type="Self.phan_quyen_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id_users" />
+            </Principal>
+            <Dependent Role="phan_quyen_users">
+              <PropertyRef Name="id_users" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_radio_cau_hoi_khac_chi_tiet_cau_hoi_tieu_de">
+          <End Role="chi_tiet_cau_hoi_tieu_de" Type="Self.chi_tiet_cau_hoi_tieu_de" Multiplicity="0..1" />
+          <End Role="radio_cau_hoi_khac" Type="Self.radio_cau_hoi_khac" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chi_tiet_cau_hoi_tieu_de">
+              <PropertyRef Name="id_chi_tiet_cau_hoi_tieu_de" />
+            </Principal>
+            <Dependent Role="radio_cau_hoi_khac">
+              <PropertyRef Name="id_chi_tiet_cau_hoi_tieu_de" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sinhvien_lop">
+          <End Role="lop" Type="Self.lop" Multiplicity="1" />
+          <End Role="sinhvien" Type="Self.sinhvien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lop">
+              <PropertyRef Name="id_lop" />
+            </Principal>
+            <Dependent Role="sinhvien">
+              <PropertyRef Name="id_lop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_survey_dot_khao_sat">
+          <End Role="dot_khao_sat" Type="Self.dot_khao_sat" Multiplicity="0..1" />
+          <End Role="survey" Type="Self.survey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dot_khao_sat">
+              <PropertyRef Name="id_dot_khao_sat" />
+            </Principal>
+            <Dependent Role="survey">
+              <PropertyRef Name="id_dot_khao_sat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_survey_hedaotao">
+          <End Role="hedaotao" Type="Self.hedaotao" Multiplicity="0..1" />
+          <End Role="survey" Type="Self.survey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hedaotao">
+              <PropertyRef Name="id_hedaotao" />
+            </Principal>
+            <Dependent Role="survey">
+              <PropertyRef Name="id_hedaotao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_survey_LoaiKhaoSat">
+          <End Role="LoaiKhaoSat" Type="Self.LoaiKhaoSat" Multiplicity="1" />
+          <End Role="survey" Type="Self.survey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiKhaoSat">
+              <PropertyRef Name="id_loaikhaosat" />
+            </Principal>
+            <Dependent Role="survey">
+              <PropertyRef Name="id_loaikhaosat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_survey_NamHoc">
+          <End Role="NamHoc" Type="Self.NamHoc" Multiplicity="0..1" />
+          <End Role="survey" Type="Self.survey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NamHoc">
+              <PropertyRef Name="id_namhoc" />
+            </Principal>
+            <Dependent Role="survey">
+              <PropertyRef Name="id_namhoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_survey_users">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="survey" Type="Self.survey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id_users" />
+            </Principal>
+            <Dependent Role="survey">
+              <PropertyRef Name="creator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tieu_de_phieu_khao_sat_survey">
+          <End Role="survey" Type="Self.survey" Multiplicity="0..1" />
+          <End Role="tieu_de_phieu_khao_sat" Type="Self.tieu_de_phieu_khao_sat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="survey">
+              <PropertyRef Name="surveyID" />
+            </Principal>
+            <Dependent Role="tieu_de_phieu_khao_sat">
+              <PropertyRef Name="surveyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_typeusers">
+          <End Role="typeusers" Type="Self.typeusers" Multiplicity="0..1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="typeusers">
+              <PropertyRef Name="id_typeusers" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="id_typeusers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbSurveyModelStoreContainer">
+          <EntitySet Name="answer_response" EntityType="Self.answer_response" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Banner" EntityType="Self.Banner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bo_mon" EntityType="Self.bo_mon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="chi_tiet_cau_hoi_tieu_de" EntityType="Self.chi_tiet_cau_hoi_tieu_de" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="chuc_nang_users" EntityType="Self.chuc_nang_users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ctdt" EntityType="Self.ctdt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dang_cau_hoi" EntityType="Self.dang_cau_hoi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dieu_kien_cau_hoi" EntityType="Self.dieu_kien_cau_hoi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dot_khao_sat" EntityType="Self.dot_khao_sat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="group_loaikhaosat" EntityType="Self.group_loaikhaosat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="hedaotao" EntityType="Self.hedaotao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="khoa_children" EntityType="Self.khoa_children" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="khoa_vien_truong" EntityType="Self.khoa_vien_truong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoaiKhaoSat" EntityType="Self.LoaiKhaoSat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="log_time_extension_survey" EntityType="Self.log_time_extension_survey" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="lop" EntityType="Self.lop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MailAttachments" EntityType="Self.MailAttachments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MailLogs" EntityType="Self.MailLogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MailRecipients" EntityType="Self.MailRecipients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NamHoc" EntityType="Self.NamHoc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NavBar" EntityType="Self.NavBar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nguoi_hoc_khao_sat" EntityType="Self.nguoi_hoc_khao_sat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="phan_quyen_chuc_nang_users" EntityType="Self.phan_quyen_chuc_nang_users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="phan_quyen_users" EntityType="Self.phan_quyen_users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="radio_cau_hoi_khac" EntityType="Self.radio_cau_hoi_khac" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sinhvien" EntityType="Self.sinhvien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="survey" EntityType="Self.survey" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tieu_de_phieu_khao_sat" EntityType="Self.tieu_de_phieu_khao_sat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="typeusers" EntityType="Self.typeusers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_answer_response_NamHoc" Association="Self.FK_answer_response_NamHoc">
+            <End Role="NamHoc" EntitySet="NamHoc" />
+            <End Role="answer_response" EntitySet="answer_response" />
+          </AssociationSet>
+          <AssociationSet Name="FK_answer_response_nguoi_hoc_khao_sat" Association="Self.FK_answer_response_nguoi_hoc_khao_sat">
+            <End Role="nguoi_hoc_khao_sat" EntitySet="nguoi_hoc_khao_sat" />
+            <End Role="answer_response" EntitySet="answer_response" />
+          </AssociationSet>
+          <AssociationSet Name="FK_answer_response_survey" Association="Self.FK_answer_response_survey">
+            <End Role="survey" EntitySet="survey" />
+            <End Role="answer_response" EntitySet="answer_response" />
+          </AssociationSet>
+          <AssociationSet Name="FK_answer_response_users" Association="Self.FK_answer_response_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="answer_response" EntitySet="answer_response" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bo_mon_khoa_children" Association="Self.FK_bo_mon_khoa_children">
+            <End Role="khoa_children" EntitySet="khoa_children" />
+            <End Role="bo_mon" EntitySet="bo_mon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bo_mon_khoa_vien_truong" Association="Self.FK_bo_mon_khoa_vien_truong">
+            <End Role="khoa_vien_truong" EntitySet="khoa_vien_truong" />
+            <End Role="bo_mon" EntitySet="bo_mon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bo_mon_NamHoc" Association="Self.FK_bo_mon_NamHoc">
+            <End Role="NamHoc" EntitySet="NamHoc" />
+            <End Role="bo_mon" EntitySet="bo_mon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_chi_tiet_cau_hoi_tieu_de_dang_cau_hoi" Association="Self.FK_chi_tiet_cau_hoi_tieu_de_dang_cau_hoi">
+            <End Role="dang_cau_hoi" EntitySet="dang_cau_hoi" />
+            <End Role="chi_tiet_cau_hoi_tieu_de" EntitySet="chi_tiet_cau_hoi_tieu_de" />
+          </AssociationSet>
+          <AssociationSet Name="FK_chi_tiet_cau_hoi_tieu_de_tieu_de_phieu_khao_sat" Association="Self.FK_chi_tiet_cau_hoi_tieu_de_tieu_de_phieu_khao_sat">
+            <End Role="tieu_de_phieu_khao_sat" EntitySet="tieu_de_phieu_khao_sat" />
+            <End Role="chi_tiet_cau_hoi_tieu_de" EntitySet="chi_tiet_cau_hoi_tieu_de" />
+          </AssociationSet>
+          <AssociationSet Name="FK_chuc_nang_users_typeusers" Association="Self.FK_chuc_nang_users_typeusers">
+            <End Role="typeusers" EntitySet="typeusers" />
+            <End Role="chuc_nang_users" EntitySet="chuc_nang_users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctdt_bo_mon" Association="Self.FK_ctdt_bo_mon">
+            <End Role="bo_mon" EntitySet="bo_mon" />
+            <End Role="ctdt" EntitySet="ctdt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctdt_hedaotao" Association="Self.FK_ctdt_hedaotao">
+            <End Role="hedaotao" EntitySet="hedaotao" />
+            <End Role="ctdt" EntitySet="ctdt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctdt_khoa_children" Association="Self.FK_ctdt_khoa_children">
+            <End Role="khoa_children" EntitySet="khoa_children" />
+            <End Role="ctdt" EntitySet="ctdt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctdt_khoa_vien_truong" Association="Self.FK_ctdt_khoa_vien_truong">
+            <End Role="khoa_vien_truong" EntitySet="khoa_vien_truong" />
+            <End Role="ctdt" EntitySet="ctdt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dieu_kien_cau_hoi_chi_tiet_cau_hoi_tieu_de" Association="Self.FK_dieu_kien_cau_hoi_chi_tiet_cau_hoi_tieu_de">
+            <End Role="chi_tiet_cau_hoi_tieu_de" EntitySet="chi_tiet_cau_hoi_tieu_de" />
+            <End Role="dieu_kien_cau_hoi" EntitySet="dieu_kien_cau_hoi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dieu_kien_cau_hoi_radio_cau_hoi_khac" Association="Self.FK_dieu_kien_cau_hoi_radio_cau_hoi_khac">
+            <End Role="radio_cau_hoi_khac" EntitySet="radio_cau_hoi_khac" />
+            <End Role="dieu_kien_cau_hoi" EntitySet="dieu_kien_cau_hoi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_khoa_children_khoa_vien_truong" Association="Self.FK_khoa_children_khoa_vien_truong">
+            <End Role="khoa_vien_truong" EntitySet="khoa_vien_truong" />
+            <End Role="khoa_children" EntitySet="khoa_children" />
+          </AssociationSet>
+          <AssociationSet Name="FK_khoa_children_NamHoc" Association="Self.FK_khoa_children_NamHoc">
+            <End Role="NamHoc" EntitySet="NamHoc" />
+            <End Role="khoa_children" EntitySet="khoa_children" />
+          </AssociationSet>
+          <AssociationSet Name="FK_khoa_NamHoc" Association="Self.FK_khoa_NamHoc">
+            <End Role="NamHoc" EntitySet="NamHoc" />
+            <End Role="khoa_vien_truong" EntitySet="khoa_vien_truong" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoaiKhaoSat_group_loaikhaosat" Association="Self.FK_LoaiKhaoSat_group_loaikhaosat">
+            <End Role="group_loaikhaosat" EntitySet="group_loaikhaosat" />
+            <End Role="LoaiKhaoSat" EntitySet="LoaiKhaoSat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_log_time_extension_survey_survey" Association="Self.FK_log_time_extension_survey_survey">
+            <End Role="survey" EntitySet="survey" />
+            <End Role="log_time_extension_survey" EntitySet="log_time_extension_survey" />
+          </AssociationSet>
+          <AssociationSet Name="FK_lop_ctdt" Association="Self.FK_lop_ctdt">
+            <End Role="ctdt" EntitySet="ctdt" />
+            <End Role="lop" EntitySet="lop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MailAttachments_MailLogs" Association="Self.FK_MailAttachments_MailLogs">
+            <End Role="MailLogs" EntitySet="MailLogs" />
+            <End Role="MailAttachments" EntitySet="MailAttachments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MailLogs_users" Association="Self.FK_MailLogs_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="MailLogs" EntitySet="MailLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MailRecipients_MailLogs" Association="Self.FK_MailRecipients_MailLogs">
+            <End Role="MailLogs" EntitySet="MailLogs" />
+            <End Role="MailRecipients" EntitySet="MailRecipients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_nguoi_hoc_khao_sat_sinhvien" Association="Self.FK_nguoi_hoc_khao_sat_sinhvien">
+            <End Role="sinhvien" EntitySet="sinhvien" />
+            <End Role="nguoi_hoc_khao_sat" EntitySet="nguoi_hoc_khao_sat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_nguoi_hoc_khao_sat_survey" Association="Self.FK_nguoi_hoc_khao_sat_survey">
+            <End Role="survey" EntitySet="survey" />
+            <End Role="nguoi_hoc_khao_sat" EntitySet="nguoi_hoc_khao_sat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_phan_quyen_chuc_nang_users_chuc_nang_users" Association="Self.FK_phan_quyen_chuc_nang_users_chuc_nang_users">
+            <End Role="chuc_nang_users" EntitySet="chuc_nang_users" />
+            <End Role="phan_quyen_chuc_nang_users" EntitySet="phan_quyen_chuc_nang_users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_phan_quyen_chuc_nang_users_users" Association="Self.FK_phan_quyen_chuc_nang_users_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="phan_quyen_chuc_nang_users" EntitySet="phan_quyen_chuc_nang_users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_phan_quyen_users_bo_mon" Association="Self.FK_phan_quyen_users_bo_mon">
+            <End Role="bo_mon" EntitySet="bo_mon" />
+            <End Role="phan_quyen_users" EntitySet="phan_quyen_users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_phan_quyen_users_ctdt" Association="Self.FK_phan_quyen_users_ctdt">
+            <End Role="ctdt" EntitySet="ctdt" />
+            <End Role="phan_quyen_users" EntitySet="phan_quyen_users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_phan_quyen_users_khoa" Association="Self.FK_phan_quyen_users_khoa">
+            <End Role="khoa_vien_truong" EntitySet="khoa_vien_truong" />
+            <End Role="phan_quyen_users" EntitySet="phan_quyen_users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_phan_quyen_users_khoa_children" Association="Self.FK_phan_quyen_users_khoa_children">
+            <End Role="khoa_children" EntitySet="khoa_children" />
+            <End Role="phan_quyen_users" EntitySet="phan_quyen_users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_phan_quyen_users_users" Association="Self.FK_phan_quyen_users_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="phan_quyen_users" EntitySet="phan_quyen_users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_radio_cau_hoi_khac_chi_tiet_cau_hoi_tieu_de" Association="Self.FK_radio_cau_hoi_khac_chi_tiet_cau_hoi_tieu_de">
+            <End Role="chi_tiet_cau_hoi_tieu_de" EntitySet="chi_tiet_cau_hoi_tieu_de" />
+            <End Role="radio_cau_hoi_khac" EntitySet="radio_cau_hoi_khac" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sinhvien_lop" Association="Self.FK_sinhvien_lop">
+            <End Role="lop" EntitySet="lop" />
+            <End Role="sinhvien" EntitySet="sinhvien" />
+          </AssociationSet>
+          <AssociationSet Name="FK_survey_dot_khao_sat" Association="Self.FK_survey_dot_khao_sat">
+            <End Role="dot_khao_sat" EntitySet="dot_khao_sat" />
+            <End Role="survey" EntitySet="survey" />
+          </AssociationSet>
+          <AssociationSet Name="FK_survey_hedaotao" Association="Self.FK_survey_hedaotao">
+            <End Role="hedaotao" EntitySet="hedaotao" />
+            <End Role="survey" EntitySet="survey" />
+          </AssociationSet>
+          <AssociationSet Name="FK_survey_LoaiKhaoSat" Association="Self.FK_survey_LoaiKhaoSat">
+            <End Role="LoaiKhaoSat" EntitySet="LoaiKhaoSat" />
+            <End Role="survey" EntitySet="survey" />
+          </AssociationSet>
+          <AssociationSet Name="FK_survey_NamHoc" Association="Self.FK_survey_NamHoc">
+            <End Role="NamHoc" EntitySet="NamHoc" />
+            <End Role="survey" EntitySet="survey" />
+          </AssociationSet>
+          <AssociationSet Name="FK_survey_users" Association="Self.FK_survey_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="survey" EntitySet="survey" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tieu_de_phieu_khao_sat_survey" Association="Self.FK_tieu_de_phieu_khao_sat_survey">
+            <End Role="survey" EntitySet="survey" />
+            <End Role="tieu_de_phieu_khao_sat" EntitySet="tieu_de_phieu_khao_sat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_typeusers" Association="Self.FK_users_typeusers">
+            <End Role="typeusers" EntitySet="typeusers" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbSurveyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="dbSurveyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="answer_response" EntityType="dbSurveyModel.answer_response" />
+          <EntitySet Name="Banner" EntityType="dbSurveyModel.Banner" />
+          <EntitySet Name="bo_mon" EntityType="dbSurveyModel.bo_mon" />
+          <EntitySet Name="chi_tiet_cau_hoi_tieu_de" EntityType="dbSurveyModel.chi_tiet_cau_hoi_tieu_de" />
+          <EntitySet Name="chuc_nang_users" EntityType="dbSurveyModel.chuc_nang_users" />
+          <EntitySet Name="ctdt" EntityType="dbSurveyModel.ctdt" />
+          <EntitySet Name="dang_cau_hoi" EntityType="dbSurveyModel.dang_cau_hoi" />
+          <EntitySet Name="dieu_kien_cau_hoi" EntityType="dbSurveyModel.dieu_kien_cau_hoi" />
+          <EntitySet Name="dot_khao_sat" EntityType="dbSurveyModel.dot_khao_sat" />
+          <EntitySet Name="group_loaikhaosat" EntityType="dbSurveyModel.group_loaikhaosat" />
+          <EntitySet Name="hedaotao" EntityType="dbSurveyModel.hedaotao" />
+          <EntitySet Name="khoa_children" EntityType="dbSurveyModel.khoa_children" />
+          <EntitySet Name="khoa_vien_truong" EntityType="dbSurveyModel.khoa_vien_truong" />
+          <EntitySet Name="LoaiKhaoSat" EntityType="dbSurveyModel.LoaiKhaoSat" />
+          <EntitySet Name="log_time_extension_survey" EntityType="dbSurveyModel.log_time_extension_survey" />
+          <EntitySet Name="lop" EntityType="dbSurveyModel.lop" />
+          <EntitySet Name="MailAttachments" EntityType="dbSurveyModel.MailAttachments" />
+          <EntitySet Name="MailLogs" EntityType="dbSurveyModel.MailLogs" />
+          <EntitySet Name="MailRecipients" EntityType="dbSurveyModel.MailRecipients" />
+          <EntitySet Name="NamHoc" EntityType="dbSurveyModel.NamHoc" />
+          <EntitySet Name="NavBar" EntityType="dbSurveyModel.NavBar" />
+          <EntitySet Name="nguoi_hoc_khao_sat" EntityType="dbSurveyModel.nguoi_hoc_khao_sat" />
+          <EntitySet Name="phan_quyen_chuc_nang_users" EntityType="dbSurveyModel.phan_quyen_chuc_nang_users" />
+          <EntitySet Name="phan_quyen_users" EntityType="dbSurveyModel.phan_quyen_users" />
+          <EntitySet Name="radio_cau_hoi_khac" EntityType="dbSurveyModel.radio_cau_hoi_khac" />
+          <EntitySet Name="sinhvien" EntityType="dbSurveyModel.sinhvien" />
+          <EntitySet Name="survey" EntityType="dbSurveyModel.survey" />
+          <EntitySet Name="sysdiagrams" EntityType="dbSurveyModel.sysdiagrams" />
+          <EntitySet Name="tieu_de_phieu_khao_sat" EntityType="dbSurveyModel.tieu_de_phieu_khao_sat" />
+          <EntitySet Name="typeusers" EntityType="dbSurveyModel.typeusers" />
+          <EntitySet Name="users" EntityType="dbSurveyModel.users" />
+          <AssociationSet Name="FK_answer_response_NamHoc" Association="dbSurveyModel.FK_answer_response_NamHoc">
+            <End Role="NamHoc" EntitySet="NamHoc" />
+            <End Role="answer_response" EntitySet="answer_response" />
+          </AssociationSet>
+          <AssociationSet Name="FK_answer_response_nguoi_hoc_khao_sat" Association="dbSurveyModel.FK_answer_response_nguoi_hoc_khao_sat">
+            <End Role="nguoi_hoc_khao_sat" EntitySet="nguoi_hoc_khao_sat" />
+            <End Role="answer_response" EntitySet="answer_response" />
+          </AssociationSet>
+          <AssociationSet Name="FK_answer_response_survey" Association="dbSurveyModel.FK_answer_response_survey">
+            <End Role="survey" EntitySet="survey" />
+            <End Role="answer_response" EntitySet="answer_response" />
+          </AssociationSet>
+          <AssociationSet Name="FK_answer_response_users" Association="dbSurveyModel.FK_answer_response_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="answer_response" EntitySet="answer_response" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bo_mon_khoa_children" Association="dbSurveyModel.FK_bo_mon_khoa_children">
+            <End Role="khoa_children" EntitySet="khoa_children" />
+            <End Role="bo_mon" EntitySet="bo_mon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bo_mon_khoa_vien_truong" Association="dbSurveyModel.FK_bo_mon_khoa_vien_truong">
+            <End Role="khoa_vien_truong" EntitySet="khoa_vien_truong" />
+            <End Role="bo_mon" EntitySet="bo_mon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bo_mon_NamHoc" Association="dbSurveyModel.FK_bo_mon_NamHoc">
+            <End Role="NamHoc" EntitySet="NamHoc" />
+            <End Role="bo_mon" EntitySet="bo_mon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctdt_bo_mon" Association="dbSurveyModel.FK_ctdt_bo_mon">
+            <End Role="bo_mon" EntitySet="bo_mon" />
+            <End Role="ctdt" EntitySet="ctdt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_phan_quyen_users_bo_mon" Association="dbSurveyModel.FK_phan_quyen_users_bo_mon">
+            <End Role="bo_mon" EntitySet="bo_mon" />
+            <End Role="phan_quyen_users" EntitySet="phan_quyen_users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_chi_tiet_cau_hoi_tieu_de_dang_cau_hoi" Association="dbSurveyModel.FK_chi_tiet_cau_hoi_tieu_de_dang_cau_hoi">
+            <End Role="dang_cau_hoi" EntitySet="dang_cau_hoi" />
+            <End Role="chi_tiet_cau_hoi_tieu_de" EntitySet="chi_tiet_cau_hoi_tieu_de" />
+          </AssociationSet>
+          <AssociationSet Name="FK_chi_tiet_cau_hoi_tieu_de_tieu_de_phieu_khao_sat" Association="dbSurveyModel.FK_chi_tiet_cau_hoi_tieu_de_tieu_de_phieu_khao_sat">
+            <End Role="tieu_de_phieu_khao_sat" EntitySet="tieu_de_phieu_khao_sat" />
+            <End Role="chi_tiet_cau_hoi_tieu_de" EntitySet="chi_tiet_cau_hoi_tieu_de" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dieu_kien_cau_hoi_chi_tiet_cau_hoi_tieu_de" Association="dbSurveyModel.FK_dieu_kien_cau_hoi_chi_tiet_cau_hoi_tieu_de">
+            <End Role="chi_tiet_cau_hoi_tieu_de" EntitySet="chi_tiet_cau_hoi_tieu_de" />
+            <End Role="dieu_kien_cau_hoi" EntitySet="dieu_kien_cau_hoi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_radio_cau_hoi_khac_chi_tiet_cau_hoi_tieu_de" Association="dbSurveyModel.FK_radio_cau_hoi_khac_chi_tiet_cau_hoi_tieu_de">
+            <End Role="chi_tiet_cau_hoi_tieu_de" EntitySet="chi_tiet_cau_hoi_tieu_de" />
+            <End Role="radio_cau_hoi_khac" EntitySet="radio_cau_hoi_khac" />
+          </AssociationSet>
+          <AssociationSet Name="FK_chuc_nang_users_typeusers" Association="dbSurveyModel.FK_chuc_nang_users_typeusers">
+            <End Role="typeusers" EntitySet="typeusers" />
+            <End Role="chuc_nang_users" EntitySet="chuc_nang_users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_phan_quyen_chuc_nang_users_chuc_nang_users" Association="dbSurveyModel.FK_phan_quyen_chuc_nang_users_chuc_nang_users">
+            <End Role="chuc_nang_users" EntitySet="chuc_nang_users" />
+            <End Role="phan_quyen_chuc_nang_users" EntitySet="phan_quyen_chuc_nang_users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctdt_hedaotao" Association="dbSurveyModel.FK_ctdt_hedaotao">
+            <End Role="hedaotao" EntitySet="hedaotao" />
+            <End Role="ctdt" EntitySet="ctdt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctdt_khoa_children" Association="dbSurveyModel.FK_ctdt_khoa_children">
+            <End Role="khoa_children" EntitySet="khoa_children" />
+            <End Role="ctdt" EntitySet="ctdt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctdt_khoa_vien_truong" Association="dbSurveyModel.FK_ctdt_khoa_vien_truong">
+            <End Role="khoa_vien_truong" EntitySet="khoa_vien_truong" />
+            <End Role="ctdt" EntitySet="ctdt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_lop_ctdt" Association="dbSurveyModel.FK_lop_ctdt">
+            <End Role="ctdt" EntitySet="ctdt" />
+            <End Role="lop" EntitySet="lop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_phan_quyen_users_ctdt" Association="dbSurveyModel.FK_phan_quyen_users_ctdt">
+            <End Role="ctdt" EntitySet="ctdt" />
+            <End Role="phan_quyen_users" EntitySet="phan_quyen_users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dieu_kien_cau_hoi_radio_cau_hoi_khac" Association="dbSurveyModel.FK_dieu_kien_cau_hoi_radio_cau_hoi_khac">
+            <End Role="radio_cau_hoi_khac" EntitySet="radio_cau_hoi_khac" />
+            <End Role="dieu_kien_cau_hoi" EntitySet="dieu_kien_cau_hoi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_survey_dot_khao_sat" Association="dbSurveyModel.FK_survey_dot_khao_sat">
+            <End Role="dot_khao_sat" EntitySet="dot_khao_sat" />
+            <End Role="survey" EntitySet="survey" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoaiKhaoSat_group_loaikhaosat" Association="dbSurveyModel.FK_LoaiKhaoSat_group_loaikhaosat">
+            <End Role="group_loaikhaosat" EntitySet="group_loaikhaosat" />
+            <End Role="LoaiKhaoSat" EntitySet="LoaiKhaoSat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_survey_hedaotao" Association="dbSurveyModel.FK_survey_hedaotao">
+            <End Role="hedaotao" EntitySet="hedaotao" />
+            <End Role="survey" EntitySet="survey" />
+          </AssociationSet>
+          <AssociationSet Name="FK_khoa_children_khoa_vien_truong" Association="dbSurveyModel.FK_khoa_children_khoa_vien_truong">
+            <End Role="khoa_vien_truong" EntitySet="khoa_vien_truong" />
+            <End Role="khoa_children" EntitySet="khoa_children" />
+          </AssociationSet>
+          <AssociationSet Name="FK_khoa_children_NamHoc" Association="dbSurveyModel.FK_khoa_children_NamHoc">
+            <End Role="NamHoc" EntitySet="NamHoc" />
+            <End Role="khoa_children" EntitySet="khoa_children" />
+          </AssociationSet>
+          <AssociationSet Name="FK_phan_quyen_users_khoa_children" Association="dbSurveyModel.FK_phan_quyen_users_khoa_children">
+            <End Role="khoa_children" EntitySet="khoa_children" />
+            <End Role="phan_quyen_users" EntitySet="phan_quyen_users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_khoa_NamHoc" Association="dbSurveyModel.FK_khoa_NamHoc">
+            <End Role="NamHoc" EntitySet="NamHoc" />
+            <End Role="khoa_vien_truong" EntitySet="khoa_vien_truong" />
+          </AssociationSet>
+          <AssociationSet Name="FK_phan_quyen_users_khoa" Association="dbSurveyModel.FK_phan_quyen_users_khoa">
+            <End Role="khoa_vien_truong" EntitySet="khoa_vien_truong" />
+            <End Role="phan_quyen_users" EntitySet="phan_quyen_users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_survey_LoaiKhaoSat" Association="dbSurveyModel.FK_survey_LoaiKhaoSat">
+            <End Role="LoaiKhaoSat" EntitySet="LoaiKhaoSat" />
+            <End Role="survey" EntitySet="survey" />
+          </AssociationSet>
+          <AssociationSet Name="FK_log_time_extension_survey_survey" Association="dbSurveyModel.FK_log_time_extension_survey_survey">
+            <End Role="survey" EntitySet="survey" />
+            <End Role="log_time_extension_survey" EntitySet="log_time_extension_survey" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sinhvien_lop" Association="dbSurveyModel.FK_sinhvien_lop">
+            <End Role="lop" EntitySet="lop" />
+            <End Role="sinhvien" EntitySet="sinhvien" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MailAttachments_MailLogs" Association="dbSurveyModel.FK_MailAttachments_MailLogs">
+            <End Role="MailLogs" EntitySet="MailLogs" />
+            <End Role="MailAttachments" EntitySet="MailAttachments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MailLogs_users" Association="dbSurveyModel.FK_MailLogs_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="MailLogs" EntitySet="MailLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MailRecipients_MailLogs" Association="dbSurveyModel.FK_MailRecipients_MailLogs">
+            <End Role="MailLogs" EntitySet="MailLogs" />
+            <End Role="MailRecipients" EntitySet="MailRecipients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_survey_NamHoc" Association="dbSurveyModel.FK_survey_NamHoc">
+            <End Role="NamHoc" EntitySet="NamHoc" />
+            <End Role="survey" EntitySet="survey" />
+          </AssociationSet>
+          <AssociationSet Name="FK_nguoi_hoc_khao_sat_sinhvien" Association="dbSurveyModel.FK_nguoi_hoc_khao_sat_sinhvien">
+            <End Role="sinhvien" EntitySet="sinhvien" />
+            <End Role="nguoi_hoc_khao_sat" EntitySet="nguoi_hoc_khao_sat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_nguoi_hoc_khao_sat_survey" Association="dbSurveyModel.FK_nguoi_hoc_khao_sat_survey">
+            <End Role="survey" EntitySet="survey" />
+            <End Role="nguoi_hoc_khao_sat" EntitySet="nguoi_hoc_khao_sat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_phan_quyen_chuc_nang_users_users" Association="dbSurveyModel.FK_phan_quyen_chuc_nang_users_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="phan_quyen_chuc_nang_users" EntitySet="phan_quyen_chuc_nang_users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_phan_quyen_users_users" Association="dbSurveyModel.FK_phan_quyen_users_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="phan_quyen_users" EntitySet="phan_quyen_users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_survey_users" Association="dbSurveyModel.FK_survey_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="survey" EntitySet="survey" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tieu_de_phieu_khao_sat_survey" Association="dbSurveyModel.FK_tieu_de_phieu_khao_sat_survey">
+            <End Role="survey" EntitySet="survey" />
+            <End Role="tieu_de_phieu_khao_sat" EntitySet="tieu_de_phieu_khao_sat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_typeusers" Association="dbSurveyModel.FK_users_typeusers">
+            <End Role="typeusers" EntitySet="typeusers" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="answer_response">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="surveyID" Type="Int32" Nullable="false" />
+          <Property Name="id_users" Type="Int32" />
+          <Property Name="id_nguoi_hoc_khao_sat" Type="Int32" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="json_answer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="time" Type="Int32" />
+          <Property Name="id_namhoc" Type="Int32" />
+          <NavigationProperty Name="NamHoc" Relationship="dbSurveyModel.FK_answer_response_NamHoc" FromRole="answer_response" ToRole="NamHoc" />
+          <NavigationProperty Name="nguoi_hoc_khao_sat" Relationship="dbSurveyModel.FK_answer_response_nguoi_hoc_khao_sat" FromRole="answer_response" ToRole="nguoi_hoc_khao_sat" />
+          <NavigationProperty Name="survey" Relationship="dbSurveyModel.FK_answer_response_survey" FromRole="answer_response" ToRole="survey" />
+          <NavigationProperty Name="users" Relationship="dbSurveyModel.FK_answer_response_users" FromRole="answer_response" ToRole="users" />
+        </EntityType>
+        <EntityType Name="Banner">
+          <Key>
+            <PropertyRef Name="id_banner" />
+          </Key>
+          <Property Name="id_banner" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="img_banner" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="is_open" Type="Int32" />
+        </EntityType>
+        <EntityType Name="bo_mon">
+          <Key>
+            <PropertyRef Name="id_bo_mon" />
+          </Key>
+          <Property Name="id_bo_mon" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten_bo_mon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_khoa_children" Type="Int32" />
+          <Property Name="id_khoa_vien_truong" Type="Int32" />
+          <Property Name="id_nam_hoc" Type="Int32" />
+          <Property Name="ngay_tao" Type="Int32" />
+          <Property Name="ngay_cap_nhat" Type="Int32" />
+          <NavigationProperty Name="khoa_children" Relationship="dbSurveyModel.FK_bo_mon_khoa_children" FromRole="bo_mon" ToRole="khoa_children" />
+          <NavigationProperty Name="khoa_vien_truong" Relationship="dbSurveyModel.FK_bo_mon_khoa_vien_truong" FromRole="bo_mon" ToRole="khoa_vien_truong" />
+          <NavigationProperty Name="NamHoc" Relationship="dbSurveyModel.FK_bo_mon_NamHoc" FromRole="bo_mon" ToRole="NamHoc" />
+          <NavigationProperty Name="ctdt" Relationship="dbSurveyModel.FK_ctdt_bo_mon" FromRole="bo_mon" ToRole="ctdt" />
+          <NavigationProperty Name="phan_quyen_users" Relationship="dbSurveyModel.FK_phan_quyen_users_bo_mon" FromRole="bo_mon" ToRole="phan_quyen_users" />
+        </EntityType>
+        <EntityType Name="chi_tiet_cau_hoi_tieu_de">
+          <Key>
+            <PropertyRef Name="id_chi_tiet_cau_hoi_tieu_de" />
+          </Key>
+          <Property Name="id_chi_tiet_cau_hoi_tieu_de" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="thu_tu" Type="Int32" />
+          <Property Name="id_tieu_de_phieu" Type="Int32" />
+          <Property Name="ten_cau_hoi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="id_dang_cau_hoi" Type="Int32" />
+          <Property Name="bat_buoc" Type="Int32" />
+          <Property Name="is_ykienkhac" Type="Int32" />
+          <Property Name="dieu_kien_hien_thi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="dang_cau_hoi" Relationship="dbSurveyModel.FK_chi_tiet_cau_hoi_tieu_de_dang_cau_hoi" FromRole="chi_tiet_cau_hoi_tieu_de" ToRole="dang_cau_hoi" />
+          <NavigationProperty Name="tieu_de_phieu_khao_sat" Relationship="dbSurveyModel.FK_chi_tiet_cau_hoi_tieu_de_tieu_de_phieu_khao_sat" FromRole="chi_tiet_cau_hoi_tieu_de" ToRole="tieu_de_phieu_khao_sat" />
+          <NavigationProperty Name="dieu_kien_cau_hoi" Relationship="dbSurveyModel.FK_dieu_kien_cau_hoi_chi_tiet_cau_hoi_tieu_de" FromRole="chi_tiet_cau_hoi_tieu_de" ToRole="dieu_kien_cau_hoi" />
+          <NavigationProperty Name="radio_cau_hoi_khac" Relationship="dbSurveyModel.FK_radio_cau_hoi_khac_chi_tiet_cau_hoi_tieu_de" FromRole="chi_tiet_cau_hoi_tieu_de" ToRole="radio_cau_hoi_khac" />
+        </EntityType>
+        <EntityType Name="chuc_nang_users">
+          <Key>
+            <PropertyRef Name="id_chuc_nang" />
+          </Key>
+          <Property Name="id_chuc_nang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten_chuc_nang" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ma_chuc_nang" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="id_typeusers" Type="Int32" />
+          <Property Name="ghi_chu" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="typeusers" Relationship="dbSurveyModel.FK_chuc_nang_users_typeusers" FromRole="chuc_nang_users" ToRole="typeusers" />
+          <NavigationProperty Name="phan_quyen_chuc_nang_users" Relationship="dbSurveyModel.FK_phan_quyen_chuc_nang_users_chuc_nang_users" FromRole="chuc_nang_users" ToRole="phan_quyen_chuc_nang_users" />
+        </EntityType>
+        <EntityType Name="ctdt">
+          <Key>
+            <PropertyRef Name="id_ctdt" />
+          </Key>
+          <Property Name="id_ctdt" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_ctdt" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ten_ctdt" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="id_bo_mon" Type="Int32" />
+          <Property Name="id_khoa_children" Type="Int32" />
+          <Property Name="id_khoa_vien_truong" Type="Int32" />
+          <Property Name="id_hdt" Type="Int32" />
+          <Property Name="ngaycapnhat" Type="Int32" Nullable="false" />
+          <Property Name="ngaytao" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="bo_mon" Relationship="dbSurveyModel.FK_ctdt_bo_mon" FromRole="ctdt" ToRole="bo_mon" />
+          <NavigationProperty Name="hedaotao" Relationship="dbSurveyModel.FK_ctdt_hedaotao" FromRole="ctdt" ToRole="hedaotao" />
+          <NavigationProperty Name="khoa_children" Relationship="dbSurveyModel.FK_ctdt_khoa_children" FromRole="ctdt" ToRole="khoa_children" />
+          <NavigationProperty Name="khoa_vien_truong" Relationship="dbSurveyModel.FK_ctdt_khoa_vien_truong" FromRole="ctdt" ToRole="khoa_vien_truong" />
+          <NavigationProperty Name="lop" Relationship="dbSurveyModel.FK_lop_ctdt" FromRole="ctdt" ToRole="lop" />
+          <NavigationProperty Name="phan_quyen_users" Relationship="dbSurveyModel.FK_phan_quyen_users_ctdt" FromRole="ctdt" ToRole="phan_quyen_users" />
+        </EntityType>
+        <EntityType Name="dang_cau_hoi">
+          <Key>
+            <PropertyRef Name="id_dang_cau_hoi" />
+          </Key>
+          <Property Name="id_dang_cau_hoi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten_dang_cau_hoi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="chi_tiet_cau_hoi_tieu_de" Relationship="dbSurveyModel.FK_chi_tiet_cau_hoi_tieu_de_dang_cau_hoi" FromRole="dang_cau_hoi" ToRole="chi_tiet_cau_hoi_tieu_de" />
+        </EntityType>
+        <EntityType Name="dieu_kien_cau_hoi">
+          <Key>
+            <PropertyRef Name="id_cau_hoi_dieu_kien_khac" />
+          </Key>
+          <Property Name="id_cau_hoi_dieu_kien_khac" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_chi_tiet_tieu_de_cau_hoi" Type="Int32" />
+          <Property Name="id_rd_chk" Type="Int32" />
+          <Property Name="json_question" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="chi_tiet_cau_hoi_tieu_de" Relationship="dbSurveyModel.FK_dieu_kien_cau_hoi_chi_tiet_cau_hoi_tieu_de" FromRole="dieu_kien_cau_hoi" ToRole="chi_tiet_cau_hoi_tieu_de" />
+          <NavigationProperty Name="radio_cau_hoi_khac" Relationship="dbSurveyModel.FK_dieu_kien_cau_hoi_radio_cau_hoi_khac" FromRole="dieu_kien_cau_hoi" ToRole="radio_cau_hoi_khac" />
+        </EntityType>
+        <EntityType Name="dot_khao_sat">
+          <Key>
+            <PropertyRef Name="id_dot_khao_sat" />
+          </Key>
+          <Property Name="id_dot_khao_sat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten_dot_khao_sat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="survey" Relationship="dbSurveyModel.FK_survey_dot_khao_sat" FromRole="dot_khao_sat" ToRole="survey" />
+        </EntityType>
+        <EntityType Name="group_loaikhaosat">
+          <Key>
+            <PropertyRef Name="id_gr_loaikhaosat" />
+          </Key>
+          <Property Name="id_gr_loaikhaosat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_gr_loaikhaosat" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LoaiKhaoSat" Relationship="dbSurveyModel.FK_LoaiKhaoSat_group_loaikhaosat" FromRole="group_loaikhaosat" ToRole="LoaiKhaoSat" />
+        </EntityType>
+        <EntityType Name="hedaotao">
+          <Key>
+            <PropertyRef Name="id_hedaotao" />
+          </Key>
+          <Property Name="id_hedaotao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten_hedaotao" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="describe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="is_open" Type="Int32" />
+          <Property Name="is_statistical" Type="Int32" />
+          <NavigationProperty Name="ctdt" Relationship="dbSurveyModel.FK_ctdt_hedaotao" FromRole="hedaotao" ToRole="ctdt" />
+          <NavigationProperty Name="survey" Relationship="dbSurveyModel.FK_survey_hedaotao" FromRole="hedaotao" ToRole="survey" />
+        </EntityType>
+        <EntityType Name="khoa_children">
+          <Key>
+            <PropertyRef Name="id_khoa_children" />
+          </Key>
+          <Property Name="id_khoa_children" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten_khoa_children" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_khoa_vien_truong" Type="Int32" />
+          <Property Name="id_nam_hoc" Type="Int32" />
+          <Property Name="ngay_tao" Type="Int32" />
+          <Property Name="ngay_cap_nhat" Type="Int32" />
+          <NavigationProperty Name="bo_mon" Relationship="dbSurveyModel.FK_bo_mon_khoa_children" FromRole="khoa_children" ToRole="bo_mon" />
+          <NavigationProperty Name="ctdt" Relationship="dbSurveyModel.FK_ctdt_khoa_children" FromRole="khoa_children" ToRole="ctdt" />
+          <NavigationProperty Name="khoa_vien_truong" Relationship="dbSurveyModel.FK_khoa_children_khoa_vien_truong" FromRole="khoa_children" ToRole="khoa_vien_truong" />
+          <NavigationProperty Name="NamHoc" Relationship="dbSurveyModel.FK_khoa_children_NamHoc" FromRole="khoa_children" ToRole="NamHoc" />
+          <NavigationProperty Name="phan_quyen_users" Relationship="dbSurveyModel.FK_phan_quyen_users_khoa_children" FromRole="khoa_children" ToRole="phan_quyen_users" />
+        </EntityType>
+        <EntityType Name="khoa_vien_truong">
+          <Key>
+            <PropertyRef Name="id_khoa" />
+          </Key>
+          <Property Name="id_khoa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_khoa" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ten_khoa" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="id_namhoc" Type="Int32" />
+          <Property Name="is_chuyen_mon" Type="Int32" />
+          <Property Name="ngaycapnhat" Type="Int32" Nullable="false" />
+          <Property Name="ngaytao" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="bo_mon" Relationship="dbSurveyModel.FK_bo_mon_khoa_vien_truong" FromRole="khoa_vien_truong" ToRole="bo_mon" />
+          <NavigationProperty Name="ctdt" Relationship="dbSurveyModel.FK_ctdt_khoa_vien_truong" FromRole="khoa_vien_truong" ToRole="ctdt" />
+          <NavigationProperty Name="khoa_children" Relationship="dbSurveyModel.FK_khoa_children_khoa_vien_truong" FromRole="khoa_vien_truong" ToRole="khoa_children" />
+          <NavigationProperty Name="NamHoc" Relationship="dbSurveyModel.FK_khoa_NamHoc" FromRole="khoa_vien_truong" ToRole="NamHoc" />
+          <NavigationProperty Name="phan_quyen_users" Relationship="dbSurveyModel.FK_phan_quyen_users_khoa" FromRole="khoa_vien_truong" ToRole="phan_quyen_users" />
+        </EntityType>
+        <EntityType Name="LoaiKhaoSat">
+          <Key>
+            <PropertyRef Name="id_loaikhaosat" />
+          </Key>
+          <Property Name="id_loaikhaosat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_loaikhaosat" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="id_gr_loaikhaosat" Type="Int32" />
+          <Property Name="TimeMake" Type="Int32" />
+          <Property Name="TimeUpdate" Type="Int32" />
+          <NavigationProperty Name="group_loaikhaosat" Relationship="dbSurveyModel.FK_LoaiKhaoSat_group_loaikhaosat" FromRole="LoaiKhaoSat" ToRole="group_loaikhaosat" />
+          <NavigationProperty Name="survey" Relationship="dbSurveyModel.FK_survey_LoaiKhaoSat" FromRole="LoaiKhaoSat" ToRole="survey" />
+        </EntityType>
+        <EntityType Name="log_time_extension_survey">
+          <Key>
+            <PropertyRef Name="id_log_time_extension" />
+          </Key>
+          <Property Name="id_log_time_extension" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="time_log_start" Type="Int32" />
+          <Property Name="time_log_end" Type="Int32" />
+          <Property Name="surveyid" Type="Int32" />
+          <NavigationProperty Name="survey" Relationship="dbSurveyModel.FK_log_time_extension_survey_survey" FromRole="log_time_extension_survey" ToRole="survey" />
+        </EntityType>
+        <EntityType Name="lop">
+          <Key>
+            <PropertyRef Name="id_lop" />
+          </Key>
+          <Property Name="id_lop" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_ctdt" Type="Int32" Nullable="false" />
+          <Property Name="ma_lop" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ngaycapnhat" Type="Int32" Nullable="false" />
+          <Property Name="ngaytao" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="Boolean" />
+          <NavigationProperty Name="ctdt" Relationship="dbSurveyModel.FK_lop_ctdt" FromRole="lop" ToRole="ctdt" />
+          <NavigationProperty Name="sinhvien" Relationship="dbSurveyModel.FK_sinhvien_lop" FromRole="lop" ToRole="sinhvien" />
+        </EntityType>
+        <EntityType Name="MailAttachments">
+          <Key>
+            <PropertyRef Name="id_mail_attachments" />
+          </Key>
+          <Property Name="id_mail_attachments" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FilePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FileSize" Type="Int64" />
+          <Property Name="id_mail_logs" Type="Int32" />
+          <NavigationProperty Name="MailLogs" Relationship="dbSurveyModel.FK_MailAttachments_MailLogs" FromRole="MailAttachments" ToRole="MailLogs" />
+        </EntityType>
+        <EntityType Name="MailLogs">
+          <Key>
+            <PropertyRef Name="id_mail_logs" />
+          </Key>
+          <Property Name="id_mail_logs" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_user" Type="Int32" />
+          <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Create_Date" Type="Int32" />
+          <NavigationProperty Name="MailAttachments" Relationship="dbSurveyModel.FK_MailAttachments_MailLogs" FromRole="MailLogs" ToRole="MailAttachments" />
+          <NavigationProperty Name="users" Relationship="dbSurveyModel.FK_MailLogs_users" FromRole="MailLogs" ToRole="users" />
+          <NavigationProperty Name="MailRecipients" Relationship="dbSurveyModel.FK_MailRecipients_MailLogs" FromRole="MailLogs" ToRole="MailRecipients" />
+        </EntityType>
+        <EntityType Name="MailRecipients">
+          <Key>
+            <PropertyRef Name="id_mail_recipients" />
+          </Key>
+          <Property Name="id_mail_recipients" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MailSend" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="id_mail_log" Type="Int32" />
+          <NavigationProperty Name="MailLogs" Relationship="dbSurveyModel.FK_MailRecipients_MailLogs" FromRole="MailRecipients" ToRole="MailLogs" />
+        </EntityType>
+        <EntityType Name="NamHoc">
+          <Key>
+            <PropertyRef Name="id_namhoc" />
+          </Key>
+          <Property Name="id_namhoc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten_namhoc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Boolean" />
+          <NavigationProperty Name="answer_response" Relationship="dbSurveyModel.FK_answer_response_NamHoc" FromRole="NamHoc" ToRole="answer_response" />
+          <NavigationProperty Name="bo_mon" Relationship="dbSurveyModel.FK_bo_mon_NamHoc" FromRole="NamHoc" ToRole="bo_mon" />
+          <NavigationProperty Name="khoa_children" Relationship="dbSurveyModel.FK_khoa_children_NamHoc" FromRole="NamHoc" ToRole="khoa_children" />
+          <NavigationProperty Name="khoa_vien_truong" Relationship="dbSurveyModel.FK_khoa_NamHoc" FromRole="NamHoc" ToRole="khoa_vien_truong" />
+          <NavigationProperty Name="survey" Relationship="dbSurveyModel.FK_survey_NamHoc" FromRole="NamHoc" ToRole="survey" />
+        </EntityType>
+        <EntityType Name="NavBar">
+          <Key>
+            <PropertyRef Name="id_navbar" />
+          </Key>
+          <Property Name="id_navbar" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="thu_tu_hien_thi" Type="Int32" />
+          <Property Name="name_navbar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="link_navbar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="is_open" Type="Int32" />
+        </EntityType>
+        <EntityType Name="nguoi_hoc_khao_sat">
+          <Key>
+            <PropertyRef Name="id_nguoi_hoc_khao_sat" />
+          </Key>
+          <Property Name="id_nguoi_hoc_khao_sat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="surveyID" Type="Int32" Nullable="false" />
+          <Property Name="id_sv" Type="Int32" Nullable="false" />
+          <Property Name="is_khao_sat" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="answer_response" Relationship="dbSurveyModel.FK_answer_response_nguoi_hoc_khao_sat" FromRole="nguoi_hoc_khao_sat" ToRole="answer_response" />
+          <NavigationProperty Name="sinhvien" Relationship="dbSurveyModel.FK_nguoi_hoc_khao_sat_sinhvien" FromRole="nguoi_hoc_khao_sat" ToRole="sinhvien" />
+          <NavigationProperty Name="survey" Relationship="dbSurveyModel.FK_nguoi_hoc_khao_sat_survey" FromRole="nguoi_hoc_khao_sat" ToRole="survey" />
+        </EntityType>
+        <EntityType Name="phan_quyen_chuc_nang_users">
+          <Key>
+            <PropertyRef Name="id_phan_quyen" />
+          </Key>
+          <Property Name="id_phan_quyen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_users" Type="Int32" Nullable="false" />
+          <Property Name="id_chuc_nang" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="chuc_nang_users" Relationship="dbSurveyModel.FK_phan_quyen_chuc_nang_users_chuc_nang_users" FromRole="phan_quyen_chuc_nang_users" ToRole="chuc_nang_users" />
+          <NavigationProperty Name="users" Relationship="dbSurveyModel.FK_phan_quyen_chuc_nang_users_users" FromRole="phan_quyen_chuc_nang_users" ToRole="users" />
+        </EntityType>
+        <EntityType Name="phan_quyen_users">
+          <Key>
+            <PropertyRef Name="id_phan_quyen_user" />
+          </Key>
+          <Property Name="id_phan_quyen_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_users" Type="Int32" />
+          <Property Name="id_ctdt" Type="Int32" />
+          <Property Name="id_don_vi" Type="Int32" />
+          <Property Name="id_khoa" Type="Int32" />
+          <Property Name="id_bo_mon" Type="Int32" />
+          <NavigationProperty Name="bo_mon" Relationship="dbSurveyModel.FK_phan_quyen_users_bo_mon" FromRole="phan_quyen_users" ToRole="bo_mon" />
+          <NavigationProperty Name="ctdt" Relationship="dbSurveyModel.FK_phan_quyen_users_ctdt" FromRole="phan_quyen_users" ToRole="ctdt" />
+          <NavigationProperty Name="khoa_children" Relationship="dbSurveyModel.FK_phan_quyen_users_khoa_children" FromRole="phan_quyen_users" ToRole="khoa_children" />
+          <NavigationProperty Name="khoa_vien_truong" Relationship="dbSurveyModel.FK_phan_quyen_users_khoa" FromRole="phan_quyen_users" ToRole="khoa_vien_truong" />
+          <NavigationProperty Name="users" Relationship="dbSurveyModel.FK_phan_quyen_users_users" FromRole="phan_quyen_users" ToRole="users" />
+        </EntityType>
+        <EntityType Name="radio_cau_hoi_khac">
+          <Key>
+            <PropertyRef Name="id_rd_cau_hoi_khac" />
+          </Key>
+          <Property Name="id_rd_cau_hoi_khac" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="thu_tu" Type="Int32" />
+          <Property Name="ten_rd_cau_hoi_khac" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="id_chi_tiet_cau_hoi_tieu_de" Type="Int32" />
+          <NavigationProperty Name="chi_tiet_cau_hoi_tieu_de" Relationship="dbSurveyModel.FK_radio_cau_hoi_khac_chi_tiet_cau_hoi_tieu_de" FromRole="radio_cau_hoi_khac" ToRole="chi_tiet_cau_hoi_tieu_de" />
+          <NavigationProperty Name="dieu_kien_cau_hoi" Relationship="dbSurveyModel.FK_dieu_kien_cau_hoi_radio_cau_hoi_khac" FromRole="radio_cau_hoi_khac" ToRole="dieu_kien_cau_hoi" />
+        </EntityType>
+        <EntityType Name="sinhvien">
+          <Key>
+            <PropertyRef Name="id_sv" />
+          </Key>
+          <Property Name="id_sv" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_lop" Type="Int32" Nullable="false" />
+          <Property Name="ma_sv" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="hovaten" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ngaysinh" Type="DateTime" Precision="0" />
+          <Property Name="sodienthoai" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="diachi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="phai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ngaycapnhat" Type="Int32" />
+          <Property Name="ngaytao" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="lop" Relationship="dbSurveyModel.FK_sinhvien_lop" FromRole="sinhvien" ToRole="lop" />
+          <NavigationProperty Name="nguoi_hoc_khao_sat" Relationship="dbSurveyModel.FK_nguoi_hoc_khao_sat_sinhvien" FromRole="sinhvien" ToRole="nguoi_hoc_khao_sat" />
+        </EntityType>
+        <EntityType Name="survey">
+          <Key>
+            <PropertyRef Name="surveyID" />
+          </Key>
+          <Property Name="surveyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_hedaotao" Type="Int32" />
+          <Property Name="surveyData" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="surveyTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="surveyDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="surveyTimeStart" Type="Int32" />
+          <Property Name="surveyTimeEnd" Type="Int32" />
+          <Property Name="surveyTimeMake" Type="Int32" />
+          <Property Name="surveyTimeUpdate" Type="Int32" />
+          <Property Name="surveyStatus" Type="Int32" />
+          <Property Name="id_loaikhaosat" Type="Int32" Nullable="false" />
+          <Property Name="creator" Type="Int32" />
+          <Property Name="id_namhoc" Type="Int32" />
+          <Property Name="id_dot_khao_sat" Type="Int32" />
+          <Property Name="mo_thong_ke" Type="Int32" />
+          <Property Name="ty_le_phan_tram_dat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="answer_response" Relationship="dbSurveyModel.FK_answer_response_survey" FromRole="survey" ToRole="answer_response" />
+          <NavigationProperty Name="dot_khao_sat" Relationship="dbSurveyModel.FK_survey_dot_khao_sat" FromRole="survey" ToRole="dot_khao_sat" />
+          <NavigationProperty Name="hedaotao" Relationship="dbSurveyModel.FK_survey_hedaotao" FromRole="survey" ToRole="hedaotao" />
+          <NavigationProperty Name="LoaiKhaoSat" Relationship="dbSurveyModel.FK_survey_LoaiKhaoSat" FromRole="survey" ToRole="LoaiKhaoSat" />
+          <NavigationProperty Name="log_time_extension_survey" Relationship="dbSurveyModel.FK_log_time_extension_survey_survey" FromRole="survey" ToRole="log_time_extension_survey" />
+          <NavigationProperty Name="NamHoc" Relationship="dbSurveyModel.FK_survey_NamHoc" FromRole="survey" ToRole="NamHoc" />
+          <NavigationProperty Name="nguoi_hoc_khao_sat" Relationship="dbSurveyModel.FK_nguoi_hoc_khao_sat_survey" FromRole="survey" ToRole="nguoi_hoc_khao_sat" />
+          <NavigationProperty Name="users" Relationship="dbSurveyModel.FK_survey_users" FromRole="survey" ToRole="users" />
+          <NavigationProperty Name="tieu_de_phieu_khao_sat" Relationship="dbSurveyModel.FK_tieu_de_phieu_khao_sat_survey" FromRole="survey" ToRole="tieu_de_phieu_khao_sat" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tieu_de_phieu_khao_sat">
+          <Key>
+            <PropertyRef Name="id_tieu_de_phieu" />
+          </Key>
+          <Property Name="id_tieu_de_phieu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="thu_tu" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="thu_tu_sap_xep" Type="Int32" />
+          <Property Name="surveyID" Type="Int32" />
+          <Property Name="ten_tieu_de" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="desception" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="dieu_kien_hien_thi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="chi_tiet_cau_hoi_tieu_de" Relationship="dbSurveyModel.FK_chi_tiet_cau_hoi_tieu_de_tieu_de_phieu_khao_sat" FromRole="tieu_de_phieu_khao_sat" ToRole="chi_tiet_cau_hoi_tieu_de" />
+          <NavigationProperty Name="survey" Relationship="dbSurveyModel.FK_tieu_de_phieu_khao_sat_survey" FromRole="tieu_de_phieu_khao_sat" ToRole="survey" />
+        </EntityType>
+        <EntityType Name="typeusers">
+          <Key>
+            <PropertyRef Name="id_typeusers" />
+          </Key>
+          <Property Name="id_typeusers" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_typeusers" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="chuc_nang_users" Relationship="dbSurveyModel.FK_chuc_nang_users_typeusers" FromRole="typeusers" ToRole="chuc_nang_users" />
+          <NavigationProperty Name="users" Relationship="dbSurveyModel.FK_users_typeusers" FromRole="typeusers" ToRole="users" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id_users" />
+          </Key>
+          <Property Name="id_users" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="lastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="id_typeusers" Type="Int32" />
+          <Property Name="ngaycapnhat" Type="Int32" />
+          <Property Name="ngaytao" Type="Int32" />
+          <Property Name="dang_nhap_lan_cuoi" Type="Int32" />
+          <Property Name="avatarUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Byte" />
+          <NavigationProperty Name="answer_response" Relationship="dbSurveyModel.FK_answer_response_users" FromRole="users" ToRole="answer_response" />
+          <NavigationProperty Name="MailLogs" Relationship="dbSurveyModel.FK_MailLogs_users" FromRole="users" ToRole="MailLogs" />
+          <NavigationProperty Name="phan_quyen_chuc_nang_users" Relationship="dbSurveyModel.FK_phan_quyen_chuc_nang_users_users" FromRole="users" ToRole="phan_quyen_chuc_nang_users" />
+          <NavigationProperty Name="phan_quyen_users" Relationship="dbSurveyModel.FK_phan_quyen_users_users" FromRole="users" ToRole="phan_quyen_users" />
+          <NavigationProperty Name="survey" Relationship="dbSurveyModel.FK_survey_users" FromRole="users" ToRole="survey" />
+          <NavigationProperty Name="typeusers" Relationship="dbSurveyModel.FK_users_typeusers" FromRole="users" ToRole="typeusers" />
+        </EntityType>
+        <Association Name="FK_answer_response_NamHoc">
+          <End Type="dbSurveyModel.NamHoc" Role="NamHoc" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.answer_response" Role="answer_response" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NamHoc">
+              <PropertyRef Name="id_namhoc" />
+            </Principal>
+            <Dependent Role="answer_response">
+              <PropertyRef Name="id_namhoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_answer_response_nguoi_hoc_khao_sat">
+          <End Type="dbSurveyModel.nguoi_hoc_khao_sat" Role="nguoi_hoc_khao_sat" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.answer_response" Role="answer_response" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nguoi_hoc_khao_sat">
+              <PropertyRef Name="id_nguoi_hoc_khao_sat" />
+            </Principal>
+            <Dependent Role="answer_response">
+              <PropertyRef Name="id_nguoi_hoc_khao_sat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_answer_response_survey">
+          <End Type="dbSurveyModel.survey" Role="survey" Multiplicity="1" />
+          <End Type="dbSurveyModel.answer_response" Role="answer_response" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="survey">
+              <PropertyRef Name="surveyID" />
+            </Principal>
+            <Dependent Role="answer_response">
+              <PropertyRef Name="surveyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_answer_response_users">
+          <End Type="dbSurveyModel.users" Role="users" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.answer_response" Role="answer_response" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id_users" />
+            </Principal>
+            <Dependent Role="answer_response">
+              <PropertyRef Name="id_users" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bo_mon_khoa_children">
+          <End Type="dbSurveyModel.khoa_children" Role="khoa_children" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.bo_mon" Role="bo_mon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khoa_children">
+              <PropertyRef Name="id_khoa_children" />
+            </Principal>
+            <Dependent Role="bo_mon">
+              <PropertyRef Name="id_khoa_children" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bo_mon_khoa_vien_truong">
+          <End Type="dbSurveyModel.khoa_vien_truong" Role="khoa_vien_truong" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.bo_mon" Role="bo_mon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khoa_vien_truong">
+              <PropertyRef Name="id_khoa" />
+            </Principal>
+            <Dependent Role="bo_mon">
+              <PropertyRef Name="id_khoa_vien_truong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bo_mon_NamHoc">
+          <End Type="dbSurveyModel.NamHoc" Role="NamHoc" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.bo_mon" Role="bo_mon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NamHoc">
+              <PropertyRef Name="id_namhoc" />
+            </Principal>
+            <Dependent Role="bo_mon">
+              <PropertyRef Name="id_nam_hoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctdt_bo_mon">
+          <End Type="dbSurveyModel.bo_mon" Role="bo_mon" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.ctdt" Role="ctdt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bo_mon">
+              <PropertyRef Name="id_bo_mon" />
+            </Principal>
+            <Dependent Role="ctdt">
+              <PropertyRef Name="id_bo_mon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_phan_quyen_users_bo_mon">
+          <End Type="dbSurveyModel.bo_mon" Role="bo_mon" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.phan_quyen_users" Role="phan_quyen_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bo_mon">
+              <PropertyRef Name="id_bo_mon" />
+            </Principal>
+            <Dependent Role="phan_quyen_users">
+              <PropertyRef Name="id_bo_mon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_chi_tiet_cau_hoi_tieu_de_dang_cau_hoi">
+          <End Type="dbSurveyModel.dang_cau_hoi" Role="dang_cau_hoi" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.chi_tiet_cau_hoi_tieu_de" Role="chi_tiet_cau_hoi_tieu_de" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dang_cau_hoi">
+              <PropertyRef Name="id_dang_cau_hoi" />
+            </Principal>
+            <Dependent Role="chi_tiet_cau_hoi_tieu_de">
+              <PropertyRef Name="id_dang_cau_hoi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_chi_tiet_cau_hoi_tieu_de_tieu_de_phieu_khao_sat">
+          <End Type="dbSurveyModel.tieu_de_phieu_khao_sat" Role="tieu_de_phieu_khao_sat" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.chi_tiet_cau_hoi_tieu_de" Role="chi_tiet_cau_hoi_tieu_de" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tieu_de_phieu_khao_sat">
+              <PropertyRef Name="id_tieu_de_phieu" />
+            </Principal>
+            <Dependent Role="chi_tiet_cau_hoi_tieu_de">
+              <PropertyRef Name="id_tieu_de_phieu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dieu_kien_cau_hoi_chi_tiet_cau_hoi_tieu_de">
+          <End Type="dbSurveyModel.chi_tiet_cau_hoi_tieu_de" Role="chi_tiet_cau_hoi_tieu_de" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.dieu_kien_cau_hoi" Role="dieu_kien_cau_hoi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chi_tiet_cau_hoi_tieu_de">
+              <PropertyRef Name="id_chi_tiet_cau_hoi_tieu_de" />
+            </Principal>
+            <Dependent Role="dieu_kien_cau_hoi">
+              <PropertyRef Name="id_chi_tiet_tieu_de_cau_hoi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_radio_cau_hoi_khac_chi_tiet_cau_hoi_tieu_de">
+          <End Type="dbSurveyModel.chi_tiet_cau_hoi_tieu_de" Role="chi_tiet_cau_hoi_tieu_de" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.radio_cau_hoi_khac" Role="radio_cau_hoi_khac" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chi_tiet_cau_hoi_tieu_de">
+              <PropertyRef Name="id_chi_tiet_cau_hoi_tieu_de" />
+            </Principal>
+            <Dependent Role="radio_cau_hoi_khac">
+              <PropertyRef Name="id_chi_tiet_cau_hoi_tieu_de" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_chuc_nang_users_typeusers">
+          <End Type="dbSurveyModel.typeusers" Role="typeusers" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.chuc_nang_users" Role="chuc_nang_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="typeusers">
+              <PropertyRef Name="id_typeusers" />
+            </Principal>
+            <Dependent Role="chuc_nang_users">
+              <PropertyRef Name="id_typeusers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_phan_quyen_chuc_nang_users_chuc_nang_users">
+          <End Type="dbSurveyModel.chuc_nang_users" Role="chuc_nang_users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbSurveyModel.phan_quyen_chuc_nang_users" Role="phan_quyen_chuc_nang_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chuc_nang_users">
+              <PropertyRef Name="id_chuc_nang" />
+            </Principal>
+            <Dependent Role="phan_quyen_chuc_nang_users">
+              <PropertyRef Name="id_chuc_nang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctdt_hedaotao">
+          <End Type="dbSurveyModel.hedaotao" Role="hedaotao" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.ctdt" Role="ctdt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hedaotao">
+              <PropertyRef Name="id_hedaotao" />
+            </Principal>
+            <Dependent Role="ctdt">
+              <PropertyRef Name="id_hdt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctdt_khoa_children">
+          <End Type="dbSurveyModel.khoa_children" Role="khoa_children" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.ctdt" Role="ctdt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khoa_children">
+              <PropertyRef Name="id_khoa_children" />
+            </Principal>
+            <Dependent Role="ctdt">
+              <PropertyRef Name="id_khoa_children" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctdt_khoa_vien_truong">
+          <End Type="dbSurveyModel.khoa_vien_truong" Role="khoa_vien_truong" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.ctdt" Role="ctdt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khoa_vien_truong">
+              <PropertyRef Name="id_khoa" />
+            </Principal>
+            <Dependent Role="ctdt">
+              <PropertyRef Name="id_khoa_vien_truong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_lop_ctdt">
+          <End Type="dbSurveyModel.ctdt" Role="ctdt" Multiplicity="1" />
+          <End Type="dbSurveyModel.lop" Role="lop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ctdt">
+              <PropertyRef Name="id_ctdt" />
+            </Principal>
+            <Dependent Role="lop">
+              <PropertyRef Name="id_ctdt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_phan_quyen_users_ctdt">
+          <End Type="dbSurveyModel.ctdt" Role="ctdt" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.phan_quyen_users" Role="phan_quyen_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ctdt">
+              <PropertyRef Name="id_ctdt" />
+            </Principal>
+            <Dependent Role="phan_quyen_users">
+              <PropertyRef Name="id_ctdt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dieu_kien_cau_hoi_radio_cau_hoi_khac">
+          <End Type="dbSurveyModel.radio_cau_hoi_khac" Role="radio_cau_hoi_khac" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.dieu_kien_cau_hoi" Role="dieu_kien_cau_hoi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="radio_cau_hoi_khac">
+              <PropertyRef Name="id_rd_cau_hoi_khac" />
+            </Principal>
+            <Dependent Role="dieu_kien_cau_hoi">
+              <PropertyRef Name="id_rd_chk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_survey_dot_khao_sat">
+          <End Type="dbSurveyModel.dot_khao_sat" Role="dot_khao_sat" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.survey" Role="survey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dot_khao_sat">
+              <PropertyRef Name="id_dot_khao_sat" />
+            </Principal>
+            <Dependent Role="survey">
+              <PropertyRef Name="id_dot_khao_sat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LoaiKhaoSat_group_loaikhaosat">
+          <End Type="dbSurveyModel.group_loaikhaosat" Role="group_loaikhaosat" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.LoaiKhaoSat" Role="LoaiKhaoSat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="group_loaikhaosat">
+              <PropertyRef Name="id_gr_loaikhaosat" />
+            </Principal>
+            <Dependent Role="LoaiKhaoSat">
+              <PropertyRef Name="id_gr_loaikhaosat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_survey_hedaotao">
+          <End Type="dbSurveyModel.hedaotao" Role="hedaotao" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.survey" Role="survey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hedaotao">
+              <PropertyRef Name="id_hedaotao" />
+            </Principal>
+            <Dependent Role="survey">
+              <PropertyRef Name="id_hedaotao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_khoa_children_khoa_vien_truong">
+          <End Type="dbSurveyModel.khoa_vien_truong" Role="khoa_vien_truong" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.khoa_children" Role="khoa_children" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khoa_vien_truong">
+              <PropertyRef Name="id_khoa" />
+            </Principal>
+            <Dependent Role="khoa_children">
+              <PropertyRef Name="id_khoa_vien_truong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_khoa_children_NamHoc">
+          <End Type="dbSurveyModel.NamHoc" Role="NamHoc" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.khoa_children" Role="khoa_children" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NamHoc">
+              <PropertyRef Name="id_namhoc" />
+            </Principal>
+            <Dependent Role="khoa_children">
+              <PropertyRef Name="id_nam_hoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_phan_quyen_users_khoa_children">
+          <End Type="dbSurveyModel.khoa_children" Role="khoa_children" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.phan_quyen_users" Role="phan_quyen_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khoa_children">
+              <PropertyRef Name="id_khoa_children" />
+            </Principal>
+            <Dependent Role="phan_quyen_users">
+              <PropertyRef Name="id_khoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_khoa_NamHoc">
+          <End Type="dbSurveyModel.NamHoc" Role="NamHoc" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.khoa_vien_truong" Role="khoa_vien_truong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NamHoc">
+              <PropertyRef Name="id_namhoc" />
+            </Principal>
+            <Dependent Role="khoa_vien_truong">
+              <PropertyRef Name="id_namhoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_phan_quyen_users_khoa">
+          <End Type="dbSurveyModel.khoa_vien_truong" Role="khoa_vien_truong" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.phan_quyen_users" Role="phan_quyen_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khoa_vien_truong">
+              <PropertyRef Name="id_khoa" />
+            </Principal>
+            <Dependent Role="phan_quyen_users">
+              <PropertyRef Name="id_don_vi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_survey_LoaiKhaoSat">
+          <End Type="dbSurveyModel.LoaiKhaoSat" Role="LoaiKhaoSat" Multiplicity="1" />
+          <End Type="dbSurveyModel.survey" Role="survey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiKhaoSat">
+              <PropertyRef Name="id_loaikhaosat" />
+            </Principal>
+            <Dependent Role="survey">
+              <PropertyRef Name="id_loaikhaosat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_log_time_extension_survey_survey">
+          <End Type="dbSurveyModel.survey" Role="survey" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.log_time_extension_survey" Role="log_time_extension_survey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="survey">
+              <PropertyRef Name="surveyID" />
+            </Principal>
+            <Dependent Role="log_time_extension_survey">
+              <PropertyRef Name="surveyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sinhvien_lop">
+          <End Type="dbSurveyModel.lop" Role="lop" Multiplicity="1" />
+          <End Type="dbSurveyModel.sinhvien" Role="sinhvien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lop">
+              <PropertyRef Name="id_lop" />
+            </Principal>
+            <Dependent Role="sinhvien">
+              <PropertyRef Name="id_lop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MailAttachments_MailLogs">
+          <End Type="dbSurveyModel.MailLogs" Role="MailLogs" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.MailAttachments" Role="MailAttachments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MailLogs">
+              <PropertyRef Name="id_mail_logs" />
+            </Principal>
+            <Dependent Role="MailAttachments">
+              <PropertyRef Name="id_mail_logs" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MailLogs_users">
+          <End Type="dbSurveyModel.users" Role="users" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.MailLogs" Role="MailLogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id_users" />
+            </Principal>
+            <Dependent Role="MailLogs">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MailRecipients_MailLogs">
+          <End Type="dbSurveyModel.MailLogs" Role="MailLogs" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.MailRecipients" Role="MailRecipients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MailLogs">
+              <PropertyRef Name="id_mail_logs" />
+            </Principal>
+            <Dependent Role="MailRecipients">
+              <PropertyRef Name="id_mail_log" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_survey_NamHoc">
+          <End Type="dbSurveyModel.NamHoc" Role="NamHoc" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.survey" Role="survey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NamHoc">
+              <PropertyRef Name="id_namhoc" />
+            </Principal>
+            <Dependent Role="survey">
+              <PropertyRef Name="id_namhoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_nguoi_hoc_khao_sat_sinhvien">
+          <End Type="dbSurveyModel.sinhvien" Role="sinhvien" Multiplicity="1" />
+          <End Type="dbSurveyModel.nguoi_hoc_khao_sat" Role="nguoi_hoc_khao_sat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sinhvien">
+              <PropertyRef Name="id_sv" />
+            </Principal>
+            <Dependent Role="nguoi_hoc_khao_sat">
+              <PropertyRef Name="id_sv" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_nguoi_hoc_khao_sat_survey">
+          <End Type="dbSurveyModel.survey" Role="survey" Multiplicity="1" />
+          <End Type="dbSurveyModel.nguoi_hoc_khao_sat" Role="nguoi_hoc_khao_sat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="survey">
+              <PropertyRef Name="surveyID" />
+            </Principal>
+            <Dependent Role="nguoi_hoc_khao_sat">
+              <PropertyRef Name="surveyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_phan_quyen_chuc_nang_users_users">
+          <End Type="dbSurveyModel.users" Role="users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="dbSurveyModel.phan_quyen_chuc_nang_users" Role="phan_quyen_chuc_nang_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id_users" />
+            </Principal>
+            <Dependent Role="phan_quyen_chuc_nang_users">
+              <PropertyRef Name="id_users" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_phan_quyen_users_users">
+          <End Type="dbSurveyModel.users" Role="users" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.phan_quyen_users" Role="phan_quyen_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id_users" />
+            </Principal>
+            <Dependent Role="phan_quyen_users">
+              <PropertyRef Name="id_users" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_survey_users">
+          <End Type="dbSurveyModel.users" Role="users" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.survey" Role="survey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id_users" />
+            </Principal>
+            <Dependent Role="survey">
+              <PropertyRef Name="creator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tieu_de_phieu_khao_sat_survey">
+          <End Type="dbSurveyModel.survey" Role="survey" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.tieu_de_phieu_khao_sat" Role="tieu_de_phieu_khao_sat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="survey">
+              <PropertyRef Name="surveyID" />
+            </Principal>
+            <Dependent Role="tieu_de_phieu_khao_sat">
+              <PropertyRef Name="surveyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_typeusers">
+          <End Type="dbSurveyModel.typeusers" Role="typeusers" Multiplicity="0..1" />
+          <End Type="dbSurveyModel.users" Role="users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="typeusers">
+              <PropertyRef Name="id_typeusers" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="id_typeusers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbSurveyModelStoreContainer" CdmEntityContainer="dbSurveyEntities">
+          <EntitySetMapping Name="answer_response">
+            <EntityTypeMapping TypeName="dbSurveyModel.answer_response">
+              <MappingFragment StoreEntitySet="answer_response">
+                <ScalarProperty Name="id_namhoc" ColumnName="id_namhoc" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="json_answer" ColumnName="json_answer" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="id_nguoi_hoc_khao_sat" ColumnName="id_nguoi_hoc_khao_sat" />
+                <ScalarProperty Name="id_users" ColumnName="id_users" />
+                <ScalarProperty Name="surveyID" ColumnName="surveyID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Banner">
+            <EntityTypeMapping TypeName="dbSurveyModel.Banner">
+              <MappingFragment StoreEntitySet="Banner">
+                <ScalarProperty Name="is_open" ColumnName="is_open" />
+                <ScalarProperty Name="img_banner" ColumnName="img_banner" />
+                <ScalarProperty Name="id_banner" ColumnName="id_banner" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bo_mon">
+            <EntityTypeMapping TypeName="dbSurveyModel.bo_mon">
+              <MappingFragment StoreEntitySet="bo_mon">
+                <ScalarProperty Name="ngay_cap_nhat" ColumnName="ngay_cap_nhat" />
+                <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+                <ScalarProperty Name="id_nam_hoc" ColumnName="id_nam_hoc" />
+                <ScalarProperty Name="id_khoa_vien_truong" ColumnName="id_khoa_vien_truong" />
+                <ScalarProperty Name="id_khoa_children" ColumnName="id_khoa_children" />
+                <ScalarProperty Name="ten_bo_mon" ColumnName="ten_bo_mon" />
+                <ScalarProperty Name="id_bo_mon" ColumnName="id_bo_mon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="chi_tiet_cau_hoi_tieu_de">
+            <EntityTypeMapping TypeName="dbSurveyModel.chi_tiet_cau_hoi_tieu_de">
+              <MappingFragment StoreEntitySet="chi_tiet_cau_hoi_tieu_de">
+                <ScalarProperty Name="dieu_kien_hien_thi" ColumnName="dieu_kien_hien_thi" />
+                <ScalarProperty Name="is_ykienkhac" ColumnName="is_ykienkhac" />
+                <ScalarProperty Name="bat_buoc" ColumnName="bat_buoc" />
+                <ScalarProperty Name="id_dang_cau_hoi" ColumnName="id_dang_cau_hoi" />
+                <ScalarProperty Name="ten_cau_hoi" ColumnName="ten_cau_hoi" />
+                <ScalarProperty Name="id_tieu_de_phieu" ColumnName="id_tieu_de_phieu" />
+                <ScalarProperty Name="thu_tu" ColumnName="thu_tu" />
+                <ScalarProperty Name="id_chi_tiet_cau_hoi_tieu_de" ColumnName="id_chi_tiet_cau_hoi_tieu_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="chuc_nang_users">
+            <EntityTypeMapping TypeName="dbSurveyModel.chuc_nang_users">
+              <MappingFragment StoreEntitySet="chuc_nang_users">
+                <ScalarProperty Name="ghi_chu" ColumnName="ghi_chu" />
+                <ScalarProperty Name="id_typeusers" ColumnName="id_typeusers" />
+                <ScalarProperty Name="ma_chuc_nang" ColumnName="ma_chuc_nang" />
+                <ScalarProperty Name="ten_chuc_nang" ColumnName="ten_chuc_nang" />
+                <ScalarProperty Name="id_chuc_nang" ColumnName="id_chuc_nang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ctdt">
+            <EntityTypeMapping TypeName="dbSurveyModel.ctdt">
+              <MappingFragment StoreEntitySet="ctdt">
+                <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
+                <ScalarProperty Name="ngaycapnhat" ColumnName="ngaycapnhat" />
+                <ScalarProperty Name="id_hdt" ColumnName="id_hdt" />
+                <ScalarProperty Name="id_khoa_vien_truong" ColumnName="id_khoa_vien_truong" />
+                <ScalarProperty Name="id_khoa_children" ColumnName="id_khoa_children" />
+                <ScalarProperty Name="id_bo_mon" ColumnName="id_bo_mon" />
+                <ScalarProperty Name="ten_ctdt" ColumnName="ten_ctdt" />
+                <ScalarProperty Name="ma_ctdt" ColumnName="ma_ctdt" />
+                <ScalarProperty Name="id_ctdt" ColumnName="id_ctdt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dang_cau_hoi">
+            <EntityTypeMapping TypeName="dbSurveyModel.dang_cau_hoi">
+              <MappingFragment StoreEntitySet="dang_cau_hoi">
+                <ScalarProperty Name="ten_dang_cau_hoi" ColumnName="ten_dang_cau_hoi" />
+                <ScalarProperty Name="id_dang_cau_hoi" ColumnName="id_dang_cau_hoi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dieu_kien_cau_hoi">
+            <EntityTypeMapping TypeName="dbSurveyModel.dieu_kien_cau_hoi">
+              <MappingFragment StoreEntitySet="dieu_kien_cau_hoi">
+                <ScalarProperty Name="json_question" ColumnName="json_question" />
+                <ScalarProperty Name="id_rd_chk" ColumnName="id_rd_chk" />
+                <ScalarProperty Name="id_chi_tiet_tieu_de_cau_hoi" ColumnName="id_chi_tiet_tieu_de_cau_hoi" />
+                <ScalarProperty Name="id_cau_hoi_dieu_kien_khac" ColumnName="id_cau_hoi_dieu_kien_khac" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dot_khao_sat">
+            <EntityTypeMapping TypeName="dbSurveyModel.dot_khao_sat">
+              <MappingFragment StoreEntitySet="dot_khao_sat">
+                <ScalarProperty Name="ten_dot_khao_sat" ColumnName="ten_dot_khao_sat" />
+                <ScalarProperty Name="id_dot_khao_sat" ColumnName="id_dot_khao_sat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="group_loaikhaosat">
+            <EntityTypeMapping TypeName="dbSurveyModel.group_loaikhaosat">
+              <MappingFragment StoreEntitySet="group_loaikhaosat">
+                <ScalarProperty Name="name_gr_loaikhaosat" ColumnName="name_gr_loaikhaosat" />
+                <ScalarProperty Name="id_gr_loaikhaosat" ColumnName="id_gr_loaikhaosat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hedaotao">
+            <EntityTypeMapping TypeName="dbSurveyModel.hedaotao">
+              <MappingFragment StoreEntitySet="hedaotao">
+                <ScalarProperty Name="is_statistical" ColumnName="is_statistical" />
+                <ScalarProperty Name="is_open" ColumnName="is_open" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="describe" ColumnName="describe" />
+                <ScalarProperty Name="ten_hedaotao" ColumnName="ten_hedaotao" />
+                <ScalarProperty Name="id_hedaotao" ColumnName="id_hedaotao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="khoa_children">
+            <EntityTypeMapping TypeName="dbSurveyModel.khoa_children">
+              <MappingFragment StoreEntitySet="khoa_children">
+                <ScalarProperty Name="ngay_cap_nhat" ColumnName="ngay_cap_nhat" />
+                <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+                <ScalarProperty Name="id_nam_hoc" ColumnName="id_nam_hoc" />
+                <ScalarProperty Name="id_khoa_vien_truong" ColumnName="id_khoa_vien_truong" />
+                <ScalarProperty Name="ten_khoa_children" ColumnName="ten_khoa_children" />
+                <ScalarProperty Name="id_khoa_children" ColumnName="id_khoa_children" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="khoa_vien_truong">
+            <EntityTypeMapping TypeName="dbSurveyModel.khoa_vien_truong">
+              <MappingFragment StoreEntitySet="khoa_vien_truong">
+                <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
+                <ScalarProperty Name="ngaycapnhat" ColumnName="ngaycapnhat" />
+                <ScalarProperty Name="is_chuyen_mon" ColumnName="is_chuyen_mon" />
+                <ScalarProperty Name="id_namhoc" ColumnName="id_namhoc" />
+                <ScalarProperty Name="ten_khoa" ColumnName="ten_khoa" />
+                <ScalarProperty Name="ma_khoa" ColumnName="ma_khoa" />
+                <ScalarProperty Name="id_khoa" ColumnName="id_khoa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoaiKhaoSat">
+            <EntityTypeMapping TypeName="dbSurveyModel.LoaiKhaoSat">
+              <MappingFragment StoreEntitySet="LoaiKhaoSat">
+                <ScalarProperty Name="TimeUpdate" ColumnName="TimeUpdate" />
+                <ScalarProperty Name="TimeMake" ColumnName="TimeMake" />
+                <ScalarProperty Name="id_gr_loaikhaosat" ColumnName="id_gr_loaikhaosat" />
+                <ScalarProperty Name="name_loaikhaosat" ColumnName="name_loaikhaosat" />
+                <ScalarProperty Name="id_loaikhaosat" ColumnName="id_loaikhaosat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="log_time_extension_survey">
+            <EntityTypeMapping TypeName="dbSurveyModel.log_time_extension_survey">
+              <MappingFragment StoreEntitySet="log_time_extension_survey">
+                <ScalarProperty Name="surveyid" ColumnName="surveyid" />
+                <ScalarProperty Name="time_log_end" ColumnName="time_log_end" />
+                <ScalarProperty Name="time_log_start" ColumnName="time_log_start" />
+                <ScalarProperty Name="id_log_time_extension" ColumnName="id_log_time_extension" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lop">
+            <EntityTypeMapping TypeName="dbSurveyModel.lop">
+              <MappingFragment StoreEntitySet="lop">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
+                <ScalarProperty Name="ngaycapnhat" ColumnName="ngaycapnhat" />
+                <ScalarProperty Name="ma_lop" ColumnName="ma_lop" />
+                <ScalarProperty Name="id_ctdt" ColumnName="id_ctdt" />
+                <ScalarProperty Name="id_lop" ColumnName="id_lop" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MailAttachments">
+            <EntityTypeMapping TypeName="dbSurveyModel.MailAttachments">
+              <MappingFragment StoreEntitySet="MailAttachments">
+                <ScalarProperty Name="id_mail_logs" ColumnName="id_mail_logs" />
+                <ScalarProperty Name="FileSize" ColumnName="FileSize" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="id_mail_attachments" ColumnName="id_mail_attachments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MailLogs">
+            <EntityTypeMapping TypeName="dbSurveyModel.MailLogs">
+              <MappingFragment StoreEntitySet="MailLogs">
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="id_mail_logs" ColumnName="id_mail_logs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MailRecipients">
+            <EntityTypeMapping TypeName="dbSurveyModel.MailRecipients">
+              <MappingFragment StoreEntitySet="MailRecipients">
+                <ScalarProperty Name="id_mail_log" ColumnName="id_mail_log" />
+                <ScalarProperty Name="MailSend" ColumnName="MailSend" />
+                <ScalarProperty Name="id_mail_recipients" ColumnName="id_mail_recipients" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NamHoc">
+            <EntityTypeMapping TypeName="dbSurveyModel.NamHoc">
+              <MappingFragment StoreEntitySet="NamHoc">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="ten_namhoc" ColumnName="ten_namhoc" />
+                <ScalarProperty Name="id_namhoc" ColumnName="id_namhoc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NavBar">
+            <EntityTypeMapping TypeName="dbSurveyModel.NavBar">
+              <MappingFragment StoreEntitySet="NavBar">
+                <ScalarProperty Name="is_open" ColumnName="is_open" />
+                <ScalarProperty Name="link_navbar" ColumnName="link_navbar" />
+                <ScalarProperty Name="name_navbar" ColumnName="name_navbar" />
+                <ScalarProperty Name="thu_tu_hien_thi" ColumnName="thu_tu_hien_thi" />
+                <ScalarProperty Name="id_navbar" ColumnName="id_navbar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nguoi_hoc_khao_sat">
+            <EntityTypeMapping TypeName="dbSurveyModel.nguoi_hoc_khao_sat">
+              <MappingFragment StoreEntitySet="nguoi_hoc_khao_sat">
+                <ScalarProperty Name="is_khao_sat" ColumnName="is_khao_sat" />
+                <ScalarProperty Name="id_sv" ColumnName="id_sv" />
+                <ScalarProperty Name="surveyID" ColumnName="surveyID" />
+                <ScalarProperty Name="id_nguoi_hoc_khao_sat" ColumnName="id_nguoi_hoc_khao_sat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="phan_quyen_chuc_nang_users">
+            <EntityTypeMapping TypeName="dbSurveyModel.phan_quyen_chuc_nang_users">
+              <MappingFragment StoreEntitySet="phan_quyen_chuc_nang_users">
+                <ScalarProperty Name="id_chuc_nang" ColumnName="id_chuc_nang" />
+                <ScalarProperty Name="id_users" ColumnName="id_users" />
+                <ScalarProperty Name="id_phan_quyen" ColumnName="id_phan_quyen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="phan_quyen_users">
+            <EntityTypeMapping TypeName="dbSurveyModel.phan_quyen_users">
+              <MappingFragment StoreEntitySet="phan_quyen_users">
+                <ScalarProperty Name="id_bo_mon" ColumnName="id_bo_mon" />
+                <ScalarProperty Name="id_khoa" ColumnName="id_khoa" />
+                <ScalarProperty Name="id_don_vi" ColumnName="id_don_vi" />
+                <ScalarProperty Name="id_ctdt" ColumnName="id_ctdt" />
+                <ScalarProperty Name="id_users" ColumnName="id_users" />
+                <ScalarProperty Name="id_phan_quyen_user" ColumnName="id_phan_quyen_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="radio_cau_hoi_khac">
+            <EntityTypeMapping TypeName="dbSurveyModel.radio_cau_hoi_khac">
+              <MappingFragment StoreEntitySet="radio_cau_hoi_khac">
+                <ScalarProperty Name="id_chi_tiet_cau_hoi_tieu_de" ColumnName="id_chi_tiet_cau_hoi_tieu_de" />
+                <ScalarProperty Name="ten_rd_cau_hoi_khac" ColumnName="ten_rd_cau_hoi_khac" />
+                <ScalarProperty Name="thu_tu" ColumnName="thu_tu" />
+                <ScalarProperty Name="id_rd_cau_hoi_khac" ColumnName="id_rd_cau_hoi_khac" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sinhvien">
+            <EntityTypeMapping TypeName="dbSurveyModel.sinhvien">
+              <MappingFragment StoreEntitySet="sinhvien">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
+                <ScalarProperty Name="ngaycapnhat" ColumnName="ngaycapnhat" />
+                <ScalarProperty Name="phai" ColumnName="phai" />
+                <ScalarProperty Name="diachi" ColumnName="diachi" />
+                <ScalarProperty Name="sodienthoai" ColumnName="sodienthoai" />
+                <ScalarProperty Name="ngaysinh" ColumnName="ngaysinh" />
+                <ScalarProperty Name="hovaten" ColumnName="hovaten" />
+                <ScalarProperty Name="ma_sv" ColumnName="ma_sv" />
+                <ScalarProperty Name="id_lop" ColumnName="id_lop" />
+                <ScalarProperty Name="id_sv" ColumnName="id_sv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="survey">
+            <EntityTypeMapping TypeName="dbSurveyModel.survey">
+              <MappingFragment StoreEntitySet="survey">
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="ty_le_phan_tram_dat" ColumnName="ty_le_phan_tram_dat" />
+                <ScalarProperty Name="mo_thong_ke" ColumnName="mo_thong_ke" />
+                <ScalarProperty Name="id_dot_khao_sat" ColumnName="id_dot_khao_sat" />
+                <ScalarProperty Name="id_namhoc" ColumnName="id_namhoc" />
+                <ScalarProperty Name="creator" ColumnName="creator" />
+                <ScalarProperty Name="id_loaikhaosat" ColumnName="id_loaikhaosat" />
+                <ScalarProperty Name="surveyStatus" ColumnName="surveyStatus" />
+                <ScalarProperty Name="surveyTimeUpdate" ColumnName="surveyTimeUpdate" />
+                <ScalarProperty Name="surveyTimeMake" ColumnName="surveyTimeMake" />
+                <ScalarProperty Name="surveyTimeEnd" ColumnName="surveyTimeEnd" />
+                <ScalarProperty Name="surveyTimeStart" ColumnName="surveyTimeStart" />
+                <ScalarProperty Name="surveyDescription" ColumnName="surveyDescription" />
+                <ScalarProperty Name="surveyTitle" ColumnName="surveyTitle" />
+                <ScalarProperty Name="surveyData" ColumnName="surveyData" />
+                <ScalarProperty Name="id_hedaotao" ColumnName="id_hedaotao" />
+                <ScalarProperty Name="surveyID" ColumnName="surveyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="dbSurveyModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tieu_de_phieu_khao_sat">
+            <EntityTypeMapping TypeName="dbSurveyModel.tieu_de_phieu_khao_sat">
+              <MappingFragment StoreEntitySet="tieu_de_phieu_khao_sat">
+                <ScalarProperty Name="dieu_kien_hien_thi" ColumnName="dieu_kien_hien_thi" />
+                <ScalarProperty Name="desception" ColumnName="desception" />
+                <ScalarProperty Name="ten_tieu_de" ColumnName="ten_tieu_de" />
+                <ScalarProperty Name="surveyID" ColumnName="surveyID" />
+                <ScalarProperty Name="thu_tu_sap_xep" ColumnName="thu_tu_sap_xep" />
+                <ScalarProperty Name="thu_tu" ColumnName="thu_tu" />
+                <ScalarProperty Name="id_tieu_de_phieu" ColumnName="id_tieu_de_phieu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="typeusers">
+            <EntityTypeMapping TypeName="dbSurveyModel.typeusers">
+              <MappingFragment StoreEntitySet="typeusers">
+                <ScalarProperty Name="name_typeusers" ColumnName="name_typeusers" />
+                <ScalarProperty Name="id_typeusers" ColumnName="id_typeusers" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="dbSurveyModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="avatarUrl" ColumnName="avatarUrl" />
+                <ScalarProperty Name="dang_nhap_lan_cuoi" ColumnName="dang_nhap_lan_cuoi" />
+                <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
+                <ScalarProperty Name="ngaycapnhat" ColumnName="ngaycapnhat" />
+                <ScalarProperty Name="id_typeusers" ColumnName="id_typeusers" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="id_users" ColumnName="id_users" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

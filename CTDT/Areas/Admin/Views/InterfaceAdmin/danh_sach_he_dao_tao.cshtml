@@ -1,0 +1,182 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    .thumbnail-img {
+        max-height: 50px;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    #imageModal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        padding-top: 60px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.8);
+    }
+
+        #imageModal img {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 80vh;
+        }
+
+        #imageModal .close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    /* Tạo lưới ảnh */
+    .image-item {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        margin: 5px;
+        border: 2px solid transparent;
+        border-radius: 6px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: border-color 0.2s;
+    }
+
+        .image-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-item.selected {
+            border-color: #28a745; /* Viền xanh khi chọn */
+        }
+
+    .modal-lg {
+        max-width: 90%; /* Giảm bớt kích thước modal */
+    }
+
+    .modal-body {
+        padding: 30px;
+    }
+
+    /* Hiển thị ảnh xem trước */
+    #previewImage {
+        max-height: 300px;
+    }
+</style>
+
+<div class="main-content">
+    <div class="card">
+        <div class="card-body">
+            <div class="page-header no-gutters">
+                <h2 class="text-uppercase">danh sách hệ đào tạo</h2>
+                <hr />
+                <fieldset class="border rounded-3 p-3">
+                    <legend class="float-none w-auto px-3">Chức năng</legend>
+                    <hr />
+                    <div class="row mb-3 align-items-center">
+                        <!-- Nhóm các nút bên phải -->
+                        <div class="col-12 col-md-6 d-flex flex-wrap justify-content-md-end justify-content-center gap-3">
+                            <button class="btn btn-primary w-100 w-md-auto px-4 py-2" id="btnAdd">
+                                <i class="fas fa-plus me-1"></i> Thêm mới
+                            </button>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <!-- Modal update -->
+            <div class="modal fade" id="Modal-update">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title h4" id="modal-title-update"><!----></h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <i class="anticon anticon-close"></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="form-validation">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label control-label">Tên hệ đào tạo</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="ten-he-dao-tao-val" placeholder="Nhập Tên hệ đào tạo">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label control-label">Mô tả</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="mo-ta-val" placeholder="Bắt buộc *">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label control-label">Trạng thái hiển thị</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control select2" id="trang-thai-val">
+                                            <option value="1">Mở</option>
+                                            <option value="0">Đóng</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label control-label">Trạng thái thống kê</label>
+                                    <div class="col-sm-10">
+                                        <p class="mb-2">Cho phép các quyền được thống kê các phiếu trong hệ này (trừ Admin)</p>
+                                        <select class="form-control select2" id="trang-thai-thong-ke-val">
+                                            <option value="1">Mở</option>
+                                            <option value="0">Đóng</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label control-label">Ảnh nền</label>
+                                    <div class="col-sm-10">
+                                        <div id="image-grid" class="row"></div>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="anh-nen-val" />
+
+                                <div class="row">
+                                    <div class="col-12 text-center">
+                                        <img id="previewImage" src="#" alt="Xem trước hình ảnh" class="img-thumbnail d-none" />
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="modal-footer" id="modal-footer-update">
+                                <!---->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="imageModal">
+                <span class="close">&times;</span>
+                <img id="modalImage" src="" alt="Full size" />
+            </div>
+            <!--End Modal Thêm mới Khoa-->
+            <div id="loadingSpinner" style="display:none" class="loader"></div>
+            <div class="m-t-25">
+                <div class="table-responsive">
+                    <table id="data-table" class="table table-bordered">
+                        <!---->
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scriptsAdmin{
+    <script src="~/Areas/Admin/Scripts/ChucNangNguoiDung/HeDaoTao.js"></script>
+}
+
+

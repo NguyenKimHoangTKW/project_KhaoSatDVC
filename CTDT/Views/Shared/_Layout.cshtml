@@ -1,0 +1,111 @@
+﻿﻿@using CTDT.Helper
+
+@{
+    var jsPath = Url.Content("~/Scripts/site.js");
+    var version = System.IO.File.GetLastWriteTime(Server.MapPath("~/Scripts/site.js")).Ticks;
+    var cssPath = Url.Content("~/Content/_site.css");
+    var cssVersion = System.IO.File.GetLastWriteTime(Server.MapPath("~/Content/_site.css")).Ticks;
+    var user = SessionHelper.GetUser();
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <title>Khảo sát dịch vụ công - TDMU</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="shortcut icon" href="https://tdmu.edu.vn/hinh/Icon.png">
+    <link rel="stylesheet" href="~/style/assets/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="~/Style/assets/css/animate.css">
+    <link rel="stylesheet" href="~/Style/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Style/assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/Style/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/Style/assets/css/aos.css">
+    <link rel="stylesheet" href="~/Style/assets/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/Style/assets/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/Style/assets/css/jquery.timepicker.css">
+    <link rel="stylesheet" href="~/Style/assets/css/flaticon.css">
+    <link rel="stylesheet" href="~/Style/assets/css/icomoon.css">
+    <link rel="stylesheet" href="~/Style/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="@cssPath?v=@cssVersion" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        .hero-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            border: none;
+            font-size: 32px;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+            .hero-btn:hover {
+                background-color: rgba(0, 0, 0, 0.7);
+            }
+
+            .hero-btn.prev {
+                left: 20px;
+            }
+
+            .hero-btn.next {
+                right: 20px;
+            }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder">
+        @Html.Action("NavLayout", "InterfaceClient")
+    </div>
+    <!-- END nav -->
+    <div class="hero-wrap hero-wrap-2" style="background-image: url('/Style/assets/logo_interface/banner.png');">
+        <div class="overlay"></div>
+       
+    </div>
+    @RenderBody()
+    @Html.Partial("_FooterLayout")
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen">
+        <svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
+        </svg>
+    </div>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    @Scripts.Render("~/script/client/js")
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="~/Scripts/login-with-google.js"></script>
+    @if (SessionHelper.IsUserLoggedIn())
+    {
+        <script>
+            setInterval(function () {
+                $.get('/api/check-session', function (res) {
+                    if (!res.alive) {
+                        Swal.fire({
+                            text: "Phiên đăng nhập đã hết hạn, vui lòng đăng nhập lại",
+                            icon: "warning",
+                            confirmButtonText: "OK"
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = '/trang-chu';
+                            }
+                        });
+                    }
+                });
+            }, 60000);
+        </script>
+    }
+
+
+    <script src="@jsPath?v=@version"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

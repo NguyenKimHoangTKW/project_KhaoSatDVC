@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Ban khảo thí, kiểm định và đảm bảo chất lượng - TDMU</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://tdmu.edu.vn/hinh/Icon.png">
+    @if (IsSectionDefined("LayoutHead"))
+    {
+        @RenderSection("LayoutHead")
+    }
+    <!-- page css -->
+    <link href="~/Areas/assets/vendors/datatables/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="~/Areas/assets/vendors/select2/select2.css" rel="stylesheet" />
+    <link href="~/Areas/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- Core css -->
+    <link href="~/Areas/assets/css/app.min.css" rel="stylesheet" />
+    <link href="~/Areas/assets/vendors/datatables/dataTables.bootstrap.min.css" rel="stylesheet">
+    <style>
+        .ui-datepicker select.ui-datepicker-month, .ui-datepicker select.ui-datepicker-year {
+            width: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <div class="layout">
+            <!-- Header START -->
+            @Html.Partial("_CTDTHeaderPartial")
+            <!-- Header END -->
+            <!-- Side Nav START -->
+            @Html.Partial("_CTDTNavPartial")
+            <!-- Side Nav END -->
+            <!-- Page Container START -->
+            <div class="page-container">
+                <!-- Content Wrapper START -->
+                @RenderBody()
+                <!-- Content Wrapper END -->
+                <!-- Footer START -->
+                <!-- Footer END -->
+                @Html.Partial("_CTDTFooterPartial")
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Core Vendors JS -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/CTDT/js")
+    @RenderSection("scriptsCTDT", required: false)
+</body>
+</html>
+

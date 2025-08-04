@@ -1,0 +1,218 @@
+﻿@{
+    ViewBag.Title = "Danh sách tài khoản - TDMU";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="main-content">
+    <div class="card">
+        <div class="card-body">
+            <div class="page-header no-gutters">
+                <h2 class="text-uppercase">Danh sách tài khoản</h2>
+                <hr />
+                <fieldset class="border rounded-3 p-3">
+                    <legend class="float-none w-auto px-3">Chức năng</legend>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label" style="font-size: 16px;font-weight: bold;color: #333">Lọc theo quyền tài khoản</label>
+                            <select class="form-control select2" id="FilterTrangThai">
+                                <option value="">Tất cả</option>
+                                @foreach (var item in ViewBag.TypeUserList)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-4 mb-3">
+                            <label for="searchInput" class="form-label fw-bold text-dark" style="font-size: 16px;">
+                                Tìm theo từ khóa
+                            </label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="keywordSearch" id="searchInput" placeholder="Nhập từ khóa muốn tìm kiếm ...">
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-12 d-flex justify-content-end">
+                            <button type="submit" id="btnFilter" name="btnFilter" class="btn btn-primary btn-tone m-r-5">Tìm kiếm</button>
+                        </div>
+                    </div>
+                    <hr />
+
+                    <div class="row">
+                        <div class="col-12 d-flex flex-wrap gap-2 justify-content-start justify-content-md-end">
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#bd-example-modal-lg">
+                                <i class="fas fa-plus-circle mr-1"></i> Thêm mới
+                            </button>
+                            <button class="btn btn-warning" id="reset-permission">
+                                <i class="fas fa-redo mr-1"></i> Reset các quyền (Trừ Admin)
+                            </button>
+                            <button class="btn btn-success" data-toggle="modal" data-target="#importExcelModal">
+                                <i class="fas fa-file-excel mr-1"></i> Import từ Excel
+                            </button>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+            <div>
+            </div>
+            <!-- Modal Import Excel -->
+            <div class="modal fade" id="importExcelModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Import tài khoản từ Excel</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <i class="anticon anticon-close"></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="importExcelForm" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="excelFile">Chọn file Excel</label>
+                                    <input type="file" class="form-control" id="excelFile" name="excelFile" accept=".xlsx, .xls">
+                                </div>
+                                <button type="submit" class="btn btn-success btn-tone m-r-5">Upload</button>
+                                <a href="~/DataExport/Mau/MauUploadUser.xlsx" download>
+                                    <button type="button" class="btn btn-info btn-tone m-r-5">Tải file mẫu</button>
+                                </a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Modal Import Excel -->
+            <!-- Modal Thêm mới User -->
+            <div class="modal fade" id="bd-example-modal-lg">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title h4">Thêm mới Người dùng</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <i class="anticon anticon-close"></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="form-validation">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label control-label">Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" id="Email" required>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger btn-tone m-r-5" data-dismiss="modal">Thoát</button>
+                                <button type="button" class="btn btn-success btn-tone m-r-5" id="btnSave">Lưu</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Modal Thêm mới User -->
+            <!--Modal xem chi tiết-->
+            <div class="modal fade" id="modal-chi-tiet">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title h4">Chi tiết quyền được cấp cho: <span id="title-modal-chi-tiet" style="color:red;font-weight:bold"></span></h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <i class="anticon anticon-close"></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <label class="form-check-label fw-semibold" id="type_user">
+                                <!---->
+                            </label>
+                            <hr />
+                            <div id="quyen_chuc_nang">
+                                <table class="table table-bordered">
+                                    <thead></thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                            <hr />
+                            <div id="table-data-info">
+                                <!---->
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger btn-tone m-r-5" data-dismiss="modal">Thoát</button>
+                            <button type="button" class="btn btn-success btn-tone m-r-5" id="btnGoToPer">Đi đến chức năng phân quyền chi tiết</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Modal xem chi tiết-->
+            <!--Modal chọn nhóm câu hỏi cho user-->
+            <div class="modal fade bd-example-modal-lg" id="ShowNhomCauHoi">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title h4">Cấp quyền nhóm câu hỏi vào User</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <i class="anticon anticon-close"></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="data-table-answer-selected">
+                                <!---->
+                            </div>
+                            <hr />
+                            <form id="form-validation">
+                                <div class="form-group row">
+                                    <div class="col-sm-10">
+                                        <select class="form-control select2" id="year-val">
+                                            @foreach (var item in ViewBag.Year)
+                                            {
+                                                <option value="@item.Value">@item.Text</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                            <hr />
+                            <div id="data-table-answer">
+                                <!---->
+                            </div>
+                            <div class="modal-footer" id="modal-footer-update-survey">
+                                <!---->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="loadingSpinner" style="display:none" class="loader"></div>
+            <!--Endmodal chọn nhóm câu hỏi cho user-->
+            <div class="m-t-25">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <!-- Filter rows per page -->
+                    <div>
+                        <label for="pageSizeSelect">Hiển thị:</label>
+                        <select id="pageSizeSelect" class="form-control form-control-sm d-inline-block" style="width: auto;">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="load_data_table">
+                        <!--Load Data-->
+                    </table>
+                </div>
+            </div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end" id="paginationControls">
+                    <!-- Phân trang -->
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+@section scriptsAdmin{
+    <script type="text/javascript" src="~/Areas/Admin/Scripts/PhanQuyen/DanhSachTaiKhoan.js"></script>
+}

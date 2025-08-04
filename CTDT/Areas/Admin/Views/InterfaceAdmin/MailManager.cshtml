@@ -1,0 +1,289 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+<style>
+    .file-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 5px;
+    }
+
+        .file-item i {
+            font-size: 20px;
+        }
+
+        .file-item span {
+            flex-grow: 1;
+            word-break: break-all;
+        }
+
+        .file-item button {
+            border: none;
+            background: transparent;
+            color: red;
+            cursor: pointer;
+        }
+    .attachment-card {
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease;
+        border-radius: 8px;
+        padding: 10px;
+        background: #fff;
+    }
+
+        .attachment-card:hover {
+            transform: scale(1.02);
+        }
+
+    .thumbnail img {
+        width: 100%;
+        max-height: 150px;
+        object-fit: contain;
+        border-radius: 4px;
+        background: #f1f1f1;
+    }
+
+    .filename {
+        font-size: 14px;
+        font-weight: 500;
+        margin-top: 8px;
+    }
+
+    .file-type-label {
+        margin-top: 5px;
+        border-radius: 3px;
+        padding: 2px 6px;
+        font-size: 12px;
+        display: inline-block;
+        color: #fff;
+    }
+
+</style>
+<div class="main-content">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 d-flex flex-wrap gap-2 justify-content-start justify-content-md-end">
+                    <!-- Gửi Mail -->
+                    <button class="btn btn-warning" id="openMail">
+                        <i class="fas fa-envelope mr-1"></i> Mở chức năng gửi Mail
+                    </button>
+
+                    <!-- Chọn phiếu khảo sát -->
+                    <button class="btn btn-primary" id="btnSurvey" style="display:none">
+                        <i class="fas fa-poll mr-1"></i> Chọn phiếu khảo sát còn thiếu
+                    </button>
+                    <!-- Import Email -->
+                    <button class="btn btn-success" id="importExcel" data-toggle="modal" data-target="#importExcelModal" style="display:none">
+                        <i class="fas fa-file-excel mr-1"></i> Import Email (Excel)
+                    </button>
+                    <!-- Xem Log -->
+                    <button class="btn btn-secondary" id="btnViewLog">
+                        <i class="fas fa-clipboard-list mr-1"></i> Xem nhật ký gửi Mail
+                    </button>
+                </div>
+            </div>
+            <hr />
+            <form id="formSendMail" enctype="multipart/form-data" style="display:none">
+                <div class="form-group">
+                    <label>Gửi đến Mail (Xuống dòng mỗi mail)</label>
+                    <textarea id="txtListMail" class="form-control" rows="5"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Tiêu đề</label>
+                    <input type="text" id="subjectInput" class="form-control" placeholder="Nhập tiêu đề..." />
+                </div>
+
+                <div class="form-group">
+                    <label>Nội dung</label>
+                    <textarea id="mytextarea"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Đính kèm file (nhiều file, tối đa 10MB/file)</label>
+                    <input type="file" id="fileInput" multiple class="form-control" />
+                    <div id="selectedFilesPreview" class="mt-2"></div>
+                </div>
+                <button type="button" id="btnSendMail" class="btn btn-primary">Gửi mail</button>
+            </form>
+            <div class="m-t-25" id="LogMailFormTable" style="display:none">
+                <h1 class="h4" style="text-align:center">Nhật ký gửi Mail</h1>
+                <hr />
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="NhatKyEmail">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Người gửi Mail</th>
+                                <th>Tiêu đề mail đã gửi</th>
+                                <th>Thời gian gửi</th>
+                                <th>*</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bodyTableShowLogMail">
+                            <!---->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--Modal chọn đáp viên chưa khảo sát-->
+<div class="modal fade bd-example-modal-lg" id="Modal-DapVienChuaKhaoSat">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title h4">Phiếu khảo sát có đáp viên chưa khảo sát</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <i class="anticon anticon-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="form-validation">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Hệ đào tạo</label>
+                        <div class="col-sm-10">
+                            <select class="form-control select2" id="hedaotao-val">
+                                @foreach (var item in ViewBag.HeDaoTao)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Năm</label>
+                        <div class="col-sm-10">
+                            <select class="form-control select2" id="nam-val">
+                                @foreach (var item in ViewBag.Year)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Phiếu khảo sát</label>
+                        <div class="col-sm-10">
+                            <select class="form-control select2" id="survey-val">
+                                <!---->
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger m-r-5" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-info m-r-5" id="btnShowInfo">Xem trước đáp viên</button>
+                <button type="button" class="btn btn-success m-r-5" id="btnSaveChange">Lấy danh sách Mail</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Modal chọn đáp viên chưa khảo sát-->
+<!--Modal xem chi tiết đáp viên chưa khảo sát-->
+<div class="modal fade bd-example-modal-xl" id="modal-info">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title h4" id="title-modal-info">Đáp viên chưa khảo sát của phiếu</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <i class="anticon anticon-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table id="datatable" class="table table-bordered">
+
+                    <!---->
+                </table>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-end" id="paginationControls">
+                        <!-- Phân trang -->
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Modal xem chi tiết đáp viên chưa khảo sát-->
+<div class="modal fade" id="importExcelModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Import tài khoản từ Excel</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <i class="anticon anticon-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="importExcelForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="excelFile">Chọn file Excel</label>
+                        <input type="file" class="form-control" id="excelFile" name="excelFile" accept=".xlsx, .xls">
+                    </div>
+                    <button type="submit" class="btn btn-success btn-tone m-r-5">Upload</button>
+                    <a href="~/DataExport/Mau/Mau_ImportListMailSend.xlsx" download>
+                        <button type="button" class="btn btn-info btn-tone m-r-5">Tải file mẫu</button>
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal MailRecipients-->
+<div class="modal fade bd-example-modal-lg" id="see-details">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title h4" id="title_Mail_Recipients"></h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <i class="anticon anticon-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="tableRecipients">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mail Sent</th>
+                            </tr>
+                        </thead>
+                        <tbody id="BodyMailRecipients">
+                            <!---->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Modal MailRecipients-->
+<!--Modal info Mails Log-->
+<div class="modal fade bd-example-modal-lg" id="info-mails-log">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title h4 w-100 text-center" id="title-info-mails-log"></h5>
+
+                <button type="button" class="close" data-dismiss="modal">
+                    <i class="anticon anticon-close"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="body-info-log-mails"></div>
+        </div>
+    </div>
+</div>
+
+
+<!--End Modal info Mails Log-->
+<div id="loadingSpinner" style="display:none" class="loader"></div>
+@section scriptsAdmin{
+    <script src="~/Areas/Admin/Scripts/ChucNangNguoiDung/MailManager.js"></script>
+}
